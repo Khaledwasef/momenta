@@ -825,6 +825,38 @@
             75% { transform: translateX(-3px); }
             100% { transform: translateX(0); }
         }
+        
+        /* تحسينات الخريطة لجعلها متجاوبة */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 75%; /* نسبة 4:3 للخريطة */
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .map-container {
+                padding-bottom: 56.25%; /* نسبة 16:9 للشاشات المتوسطة */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .map-container {
+                padding-bottom: 75%; /* العودة إلى نسبة 4:3 للشاشات الصغيرة */
+            }
+        }
     </style>
     
     <!-- Tailwind Config -->
@@ -1495,8 +1527,10 @@
                 <div data-aos="fade-left">
                     <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Find Us on Campus</h3>
                     <div class="bg-white p-4 rounded-lg shadow-md">
-                        <!-- Embedded Google Map -->
-                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3415.973761089771!2d30.968352018356743!3d31.110461308407363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7ab8d5d25f91f%3A0x87d6fc29a313db38!2z2KfZhNmF2LnZh9ivINin2YTYudin2YTZiiDZhNmE2YfZhtiv2LPYqSDZiNin2YTYqtmD2YbZiNmE2YjYrNmK2Kcg2KjZg9mB2LEg2KfZhNi02YrYrg!5e0!3m2!1sar!2seg!4v1758987164560!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <!-- Embedded Google Map - متجاوبة الآن -->
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3415.973761089771!2d30.968352018356743!3d31.110461308407363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7ab8d5d25f91f%3A0x87d6fc29a313db38!2z2KfZhNmF2LnZh9ivINin2YTYudin2YTZiiDZhNmE2YfZhtiv2LPYqSDZiNin2YTYqtmD2YbZiNmE2YjYrNmK2Kcg2KjZg9mB2LEg2KfZhNi02YrYrg!5e0!3m2!1sar!2seg!4v1758987164560!5m2!1sar!2seg" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
