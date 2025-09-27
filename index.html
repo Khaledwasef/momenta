@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momenta - Student Club</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FullCalendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #3730a3;
+            --accent-color: #f59e0b;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(79, 70, 229, 0.7), rgba(55, 48, 163, 0.8)), 
+                        url(./images/group.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .section-padding {
+            padding: 3rem 1rem;
+        }
+        
+        @media (min-width: 768px) {
+            .section-padding {
+                padding: 5rem 0;
+            }
+            
+            .hero-bg {
+                background-attachment: fixed;
+            }
+        }
+        
+        /* تحسينات التقويم للشاشات الصغيرة */
+        .fc .fc-toolbar {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .fc .fc-toolbar-title {
+            font-size: 1.25rem;
+        }
+        
+        .fc .fc-button {
+            font-size: 0.875rem;
+            padding: 0.4rem 0.8rem;
+        }
+        
+        .fc .fc-col-header-cell-cushion {
+            font-size: 0.75rem;
+            padding: 0.5rem 0.2rem;
+        }
+        
+        .fc .fc-daygrid-day-number {
+            font-size: 0.75rem;
+            padding: 0.2rem;
+        }
+        
+        .fc .fc-event {
+            font-size: 0.7rem;
+            padding: 0.1rem 0.2rem;
+        }
+        
+        @media (min-width: 640px) {
+            .fc .fc-toolbar {
+                flex-direction: row;
+            }
+            
+            .fc .fc-toolbar-title {
+                font-size: 1.5rem;
+            }
+            
+            .fc .fc-col-header-cell-cushion {
+                font-size: 0.875rem;
+                padding: 0.5rem;
+            }
+            
+            .fc .fc-daygrid-day-number {
+                font-size: 0.875rem;
+                padding: 0.5rem;
+            }
+            
+            .fc .fc-event {
+                font-size: 0.8rem;
+                padding: 0.2rem 0.4rem;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .fc .fc-toolbar-title {
+                font-size: 1.75rem;
+            }
+        }
+        
+        .calendar-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .calendar-container .fc {
+            min-width: 300px;
+        }
+        
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .committee-card {
+            transition: all 0.3s ease;
+        }
+        
+        .committee-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        .gallery-item .gallery-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            opacity: 0;
+            z-index: 2;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-icon {
+            opacity: 1;
+        }
+        
+        .event-category {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .Exhibitions { background-color: #fef3c7; color: #92400e; }
+        .sports { background-color: #dbeafe; color: #1e40af; }
+        .social { background-color: #f3e8ff; color: #7c3aed; }
+        .Competitions { background-color: #dcfce7; color: #166534; }
+        .workshops { background-color: #fce7f3; color: #be185d; }
+        
+        .logo-text {
+            font-family: 'Arial', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .momentum-dots {
+            background-image: radial-gradient(#4f46e5 20%, transparent 20%);
+            background-size: 10px 10px;
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        
+        /* تحسينات قسم الفيديو */
+        .video-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .video-main-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 2rem;
+        }
+        
+        .video-info {
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            color: white;
+            transition: all 0.3s ease;
+            display: none;
+            
+        }
+        
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .video-description {
+            font-size: 1rem;
+            opacity: 0.9;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .video-main-container:hover .video-description {
+            max-height: 100px;
+        }
+        
+        .video-playlist {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .video-playlist-item {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .video-playlist-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-playlist-item.active {
+            border: 2px solid #4f46e5;
+            transform: scale(1.02);
+        }
+        
+        .video-thumb-small {
+            position: relative;
+            height: 160px;
+            overflow: hidden;
+        }
+        
+        .video-thumb-small img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+        .video-playlist-item:hover .video-thumb-small img {
+            transform: scale(1.05);
+        }
+        
+        .video-play-icon-small {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .video-playlist-item:hover .video-play-icon-small {
+            opacity: 1;
+        }
+        
+        .video-play-icon-small i {
+            color: #4f46e5;
+            font-size: 1rem;
+            margin-left: 2px;
+        }
+        
+        .video-item-info {
+            padding: 1rem;
+        }
+        
+        .video-item-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .video-item-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+        
+        .more-videos-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #4f46e5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin: 0 auto;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+        
+        .more-videos-btn:hover {
+            background: #3730a3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.4);
+            color: white;
+        }
+        
+        .video-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+            gap: 0.5rem;
+        }
+        
+        .video-control-btn {
+            background: #f3f4f6;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .video-control-btn:hover {
+            background: #e5e7eb;
+            transform: scale(1.1);
+        }
+        
+        .video-control-btn.active {
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: 200px;
+            grid-gap: 15px;
+            grid-auto-flow: dense;
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                grid-auto-rows: 150px;
+            }
+            
+            .video-playlist {
+                grid-template-columns: 1fr;
+            }
+            
+            .video-title {
+                font-size: 1.25rem;
+            }
+            
+            .video-info {
+                padding: 1rem;
+            }
+        }
+        
+        .gallery-item-tall {
+            grid-row: span 2;
+        }
+        
+        .gallery-item-wide {
+            grid-column: span 2;
+        }
+        
+        @media (max-width: 640px) {
+            .gallery-item-wide {
+                grid-column: span 1;
+            }
+        }
+        
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        
+        .gallery-modal-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .gallery-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .gallery-modal-prev,
+        .gallery-modal-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #f1f1f1;
+            font-size: 30px;
+            font-weight: bold;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+        }
+        
+        .gallery-modal-prev {
+            left: 15px;
+        }
+        
+        .gallery-modal-next {
+            right: 15px;
+        }
+        
+        .gallery-modal-caption {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+        }
+
+        /* Founding Members Section Styles */
+        .founding-members-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .founding-members-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234f46e5' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+        
+        .founder-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .founder-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .founder-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .founder-card:hover .founder-image img {
+            transform: scale(1.1);
+        }
+        
+        .founder-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 3px 10px rgba(245, 158, 11, 0.3);
+        }
+        
+        .founder-content {
+            padding: 25px;
+            position: relative;
+        }
+        
+        .founder-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: #1f2937;
+        }
+        
+        .founder-role {
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .founder-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .founder-social {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .founder-social a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4f46e5;
+            transition: all 0.3s ease;
+        }
+        
+        .founder-social a:hover {
+            background: #4f46e5;
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #4f46e5;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: white;
+            top: 20px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -10px;
+            left: auto;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            right: auto;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #4f46e5;
+            margin-bottom: 5px;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-content::after {
+                left: 21px;
+                right: auto;
+            }
+        }
+
+        /* Mobile-specific improvements */
+        @media (max-width: 640px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+            
+            .section-padding {
+                padding: 2rem 1rem;
+            }
+            
+            .founder-image {
+                height: 200px;
+            }
+            
+            .founder-content {
+                padding: 15px;
+            }
+            
+            .founder-name {
+                font-size: 1.25rem;
+            }
+            
+            .gallery-modal-prev,
+            .gallery-modal-next {
+                font-size: 20px;
+                padding: 5px 10px;
+            }
+            
+            .gallery-modal-close {
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .event-category {
+                font-size: 0.65rem;
+                padding: 0.2rem 0.5rem;
+            }
+            
+            .founder-social a {
+                width: 30px;
+                height: 30px;
+            }
+            
+            .founder-social a i {
+                font-size: 0.8rem;
+            }
+        }
+
+        /* تأثيرات إضافية للفيديو */
+        .video-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
+            z-index: -1;
+        }
+        
+        .shuffle-animation {
+            animation: shuffle 0.5s ease;
+        }
+        
+        @keyframes shuffle {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-3px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5',
+                        secondary: '#3730a3',
+                        accent: '#f59e0b'
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="index.html" class="flex-shrink-0 flex items-center">
+                        <div class="bg-gradient-to-r from-primary to-secondary w-10 h-10 rounded-full flex items-center justify-center mr-3">
+                            <img src="./images/485392458_1151889296947287_7131704205936737111_n.jpg" alt="" srcset="">
+                        </div>
+                        <span class="logo-text text-2xl text-gray-800">Momenta</span>
+                    </a>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About</a>
+                    <a href="#activities" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Activities</a>
+                    <a href="#videos" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Videos</a>
+                    <a href="#news" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">News</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
+                    <a href="#join" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Join Us</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                </div>
+                
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#activities" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Activities</a>
+                <a href="#videos" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Videos</a>
+                <a href="#news" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">News</a>
+                <a href="#gallery" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="#join" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Join Us</a>
+                <a href="#contact" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg text-white">
+        <div class="max-w-7xl mx-auto px-4 py-20 md:py-32 text-center relative">
+            <div class="absolute top-0 left-0 w-full h-full momentum-dots opacity-10"></div>
+            <h1 class="text-3xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown">Welcome to Momenta</h1>
+            <p class="text-lg md:text-2xl mb-8 max-w-3xl mx-auto animate__animated animate__fadeInUp">Where every moment creates momentum for student success</p>
+            <div class="animate__animated animate__fadeInUp animate__delay-1s flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#join" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-yellow-500 transition transform hover:scale-105">Join Now</a>
+                <a href="#activities" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-white hover:text-primary transition">View Events</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">About Momenta</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-16">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">To create transformative moments that build momentum for students' personal and professional growth, fostering a supportive community where every member can thrive.</p>
+                    
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Our Vision</h3>
+                    <p class="text-gray-600">To be the catalyst for student success, creating impactful experiences that build lifelong connections and momentum for future achievements.</p>
+                    
+                    <div class="mt-6 md:mt-8 bg-gradient-to-r from-primary to-secondary p-0.5 rounded-lg inline-block">
+                        <div class="bg-white p-4 rounded-lg">
+                            <p class="text-gray-700 italic">"At Momenta, we believe that small moments can create big momentum. Join us and be part of something transformative."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <img src="./images/group2.jpg" 
+                         alt="Momenta club members" class="rounded-lg shadow-lg w-full">
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold text-center mb-6 md:mb-8" data-aos="fade-up">Our Leadership Team</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8" data-aos="fade-up">
+                <!-- Team Member 1 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/khaled wasef.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-accent text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-crown text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Khaled Wasef</h4>
+                    <p class="text-primary mb-2">Web Development</p>
+                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/mostafa abdelzaher.png" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-primary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-star text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Mostafa AbdElzaher</h4>
+                    <p class="text-primary mb-2">Head of momneta</p>
+                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/mostafa Waliallah.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-chart-line text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Mostafa Waliallah</h4>
+                    <p class="text-primary mb-2">HR</p>
+                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founding Members Section -->
+    <section id="founders" class="section-padding founding-members-section">
+    <div class="max-w-7xl mx-auto px-4 relative">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4" data-aos="fade-up">
+            Our Founding Members
+        </h2>
+        <p class="text-lg md:text-xl text-center mb-8 md:mb-12 text-gray-600 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            Meet the visionary professors and students who established <span class="font-semibold">Momenta Family</span> and turned it into a leading student community.
+        </p>
+
+        <!-- Flexbox Cards -->
+        <div class="flex flex-col md:flex-row justify-center gap-8 mb-12 md:mb-16 items-center">
+            
+            <!-- Founder -->
+            <div class="founder-card w-full max-w-sm" data-aos="fade-up" data-aos-delay="200">
+                <div class="founder-image">
+                    <img src="./images/dr tamer.jpg" alt="Founder - Dr. Tamer AbouElnaga">
+                    <div class="founder-badge">Founder</div>
+                </div>
+                <div class="founder-content">
+                    <h3 class="founder-name">Dr. Tamer AbouElnaga</h3>
+                    <span class="founder-role">Founder of Momenta Family</span>
+                    <p class="founder-description">
+                        Dr. Tamer laid the foundation of <span class="font-semibold">Momenta Family</span>, creating a vision that inspired students and shaped the identity of the community.
+                    </p>
+                </div>
+            </div>
+
+            <div></div>
+
+            <!-- Current Supervisor -->
+            <div class="founder-card w-full max-w-sm" data-aos="fade-up" data-aos-delay="300">
+                <div class="founder-image">
+                    <img src="./images/dr osama.jpg" alt="Current Supervisor - Dr. Osama Tharout">
+                    <div class="founder-badge">Supervisor</div>
+                </div>
+                <div class="founder-content">
+                    <h3 class="founder-name">Dr. Osama Tharout</h3>
+                    <span class="founder-role">Current Supervisor</span>
+                    <p class="founder-description">
+                        Today, <span class="font-semibold">Momenta Family</span> continues its journey under the guidance of Dr. Osama, ensuring the legacy thrives and grows stronger.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Timeline -->
+        <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg" data-aos="fade-up">
+            <h3 class="text-2xl font-bold text-center mb-6">Our Founding Story</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2019</div>
+                        <p>Momenta Family was founded by <span class="font-semibold">Dr. Tamer AbouElnaga</span>, starting as a small student initiative inside the institute.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020</div>
+                        <p>The family organized its first events and activities that attracted dozens of students, building a strong community spirit.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021</div>
+                        <p>Momenta Family grew significantly and became a well-known student organization within the institute.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Present</div>
+                        <p>Now, <span class="font-semibold">Momenta Family</span> is supervised by <span class="font-semibold">Dr. Osama Tharout</span>, continuing to empower students and expand its impact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- Activities Section -->
+    <section id="activities" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Activities & Events</h2>
+            
+            <div class="mb-8 md:mb-12" data-aos="fade-up">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">Event Categories</h3>
+                <div class="flex flex-wrap justify-center gap-2 md:gap-4">
+                    <span class="event-category Exhibitions">Exhibitions</span>
+                    <span class="event-category sports">Sports</span>
+                    <span class="event-category social">Social</span>
+                    <span class="event-category Competitions">Competitions</span>
+                    <span class="event-category workshops">workshops</span>
+                </div>
+            </div>
+            
+            <div class="mb-8 md:mb-12" data-aos="fade-up">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">Upcoming Events</h3>
+                
+                <!-- Event Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Event 1 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                        <div class="relative">
+                            <img src="./images/group2.jpg" 
+                                 alt="Exhibitions Festival" class="w-full h-40 md:h-48 object-cover">
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Spt 30
+                            </div>
+                        </div>
+                        <div class="p-4 md:p-6">
+                            <span class="event-category social">social</span>
+                            <h4 class="font-bold text-lg md:text-xl mb-2">Welcome party for new students</h4>
+                            <p class="text-gray-600 mb-4 text-sm md:text-base">Welcome party for new students</p>
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                <span>October 30, 2025 | 11:00 AM</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 mt-2 text-sm">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>مدرج 1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 2 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                        <div class="relative">
+                            <img src="./images/معرض 1.jpg" 
+                                 alt="Basketball Tournament" class="w-full h-40 md:h-48 object-cover">
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Nov 5 2024
+                            </div>
+                        </div>
+                        <div class="p-4 md:p-6">
+                            <span class="event-category Exhibitions">Exhibitions</span>
+                            <h4 class="font-bold text-lg md:text-xl mb-2">Scientific exhibition</h4>
+                            <p class="text-gray-600 mb-4 text-sm md:text-base">Scientific exhibition activities during the first graduates forum</p>
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                <span>November 5, 2024 | 10:00 Am</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 mt-2 text-sm">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Third floor</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Event 3 -->
+                    <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
+                        <div class="relative">
+                            <img src="./images/c++ workshop.jpg" 
+                                 alt="Tech Workshop" class="w-full h-40 md:h-48 object-cover">
+                            <div class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                Oct 10 2024
+                            </div>
+                        </div>
+                        <div class="p-4 md:p-6">
+                            <span class="event-category Competitions">workshops</span>
+                            <h4 class="font-bold text-lg md:text-xl mb-2">C++ Workshop</h4>
+                            <p class="text-gray-600 mb-4 text-sm md:text-base">Learn the basics of c++ in this hands-on workshop.</p>
+                            <div class="flex items-center text-gray-500 text-sm">
+                                <i class="far fa-calendar-alt mr-2"></i>
+                                <span>October 10, 2024</span>
+                            </div>
+                            <div class="flex items-center text-gray-500 mt-2 text-sm">
+                                <i class="fas fa-map-marker-alt mr-2"></i>
+                                <span>Online</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div data-aos="fade-up">
+                <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center">Event Calendar</h3>
+                <div class="calendar-container bg-white p-4 rounded-lg shadow-md">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Videos Section - المحسنة -->
+    <section id="videos" class="section-padding bg-white video-section">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Momenta Videos</h2>
+            
+            <!-- Video الرئيسي -->
+            <div class="video-main-container" data-aos="fade-up">
+                <div class="video-container">
+                    <iframe id="main-video" src="https://www.youtube.com/embed/5lCSf_vEH6c?si=02Hu1dOzaq-r-41-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="video-info">
+                    <h3 class="video-title" id="main-video-title">Welcome to Momenta - Our Journey</h3>
+                    <p class="video-description" id="main-video-description">Join us as we explore the journey of Momenta club, from its humble beginnings to becoming a thriving community for students. Discover our mission, events, and the impact we've made on campus.</p>
+                </div>
+            </div>
+            
+            <!-- عناصر التحكم -->
+            <div class="video-controls" data-aos="fade-up">
+                <button class="video-control-btn" id="shuffle-videos" title="عرض فيديوهات عشوائية">
+                    <i class="fas fa-random"></i>
+                </button>
+                <button class="video-control-btn active" id="show-all" title="عرض جميع الفيديوهات">
+                    <i class="fas fa-th"></i>
+                </button>
+                <button class="video-control-btn" id="show-popular" title="عرض الفيديوهات الأكثر مشاهدة">
+                    <i class="fas fa-fire"></i>
+                </button>
+            </div>
+            
+            <!-- قائمة الفيديوهات -->
+            <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-center" data-aos="fade-up">Featured Videos</h3>
+            
+            <div class="video-playlist" id="video-playlist" data-aos="fade-up">
+                <!-- سيتم تعبئة الفيديوهات ديناميكيًا باستخدام JavaScript -->
+            </div>
+            
+            <!-- زر More Videos -->
+            <div class="text-center" data-aos="fade-up">
+                <a href="https://www.youtube.com/@MomentaTube" target="_blank" class="more-videos-btn">
+                    <i class="fab fa-youtube mr-2"></i> More Videos on YouTube
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="section-padding bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">News & Updates</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- News Item 1 -->
+                <div class="bg-white rounded-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative">
+                        <img src="./images/new 1.jpg" 
+                             alt="Club Meeting" class="w-full h-40 md:h-48 object-cover">
+                        <div class="absolute top-0 left-0 bg-primary text-white px-3 py-1 rounded-br-lg text-sm font-semibold">
+                            achievement
+                        </div>
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <div class="text-sm text-gray-500 mb-2">May 1, 2025</div>
+                        <h4 class="font-bold text-lg md:text-xl mb-3" style="direction: rtl; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">حصول المعهد على المركز الاول فى ملتقى العباقرة</h4>
+                        <p class="text-gray-600 mb-4 text-sm md:text-base" style="direction: rtl; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">إن هذا الإنجاز الكبير يعكس تميز طلاب المعهد، ويجسد المكانة العلمية المرموقة التي يتمتع بها المعهد العالي للهندسة والتكنولوجيا بكفر الشيخ.</p>
+                        <a href="https://kfs-hiet.edu.eg/news/%D8%A7%D9%86%D8%B4%D8%B7%D8%A9-%D8%B7%D9%84%D8%A7%D8%A8%D9%8A%D8%A9/%D9%81%D9%88%D8%B2-%D8%A7%D9%84%D9%85%D8%B9%D9%87%D8%AF-%D8%A8%D8%A7%D9%84%D9%85%D8%B1%D9%83%D8%B2-%D8%A7%D9%84%D8%A7%D9%88%D9%84-%D8%B9%D9%84%D9%8A-%D9%85%D8%B3%D8%AA%D9%88%D9%8A-%D8%A7%D9%84%D8%AC%D9%85%D9%87%D9%88%D8%B1%D9%8A%D8%A9-(%D8%A8%D9%85%D9%84%D8%AA%D9%82%D9%8A-%D8%A7%D9%84%D8%B9%D8%A8%D8%A7%D9%82%D8%B1%D8%A9)" target="_blank" class="text-primary font-semibold hover:underline flex items-center text-sm md:text-base">
+                            Read More <i class="fas fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Gallery</h2>
+            
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item gallery-item-tall">
+                    <img src="./images/490317233_1171455988323951_5710444857441712699_n.jpg" 
+                         alt="Visits">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item">
+                    <img src="./images/c++ workshop.jpg" 
+                         alt="Workshop">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item gallery-item-tall">
+                    <img src="./images/galary 1.jpg" 
+                         alt="Exhibitions Festival">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="gallery-item">
+                    <img src="./images/galary 2.jpg" 
+                         alt="Exhibitions Festival">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="gallery-item gallery-item-wide">
+                    <img src="./images/galary 3.jpg" 
+                         alt="Meeting">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="gallery-item">
+                    <img src="./images/galary 4.jpg" 
+                         alt="Achievements">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 7 -->
+                <div class="gallery-item gallery-item-tall">
+                    <img src="./images/galary 5.jpg" 
+                         alt="Team building">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 8 -->
+                <div class="gallery-item">
+                    <img src="./images/galary 6.jpg" 
+                         alt="Workshop">
+                    <div class="gallery-icon">
+                        <i class="fas fa-search-plus"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="gallery-modal">
+        <span class="gallery-modal-close">&times;</span>
+        <span class="gallery-modal-prev">&#10094;</span>
+        <span class="gallery-modal-next">&#10095;</span>
+        <img class="gallery-modal-content" id="modal-image">
+        <div id="modal-caption" class="gallery-modal-caption"></div>
+    </div>
+
+    <!-- Join Us Section -->
+    <section id="join" class="section-padding bg-gray-50">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Join Momenta</h2>
+            
+            <div class="bg-gradient-to-br from-gray-50 to-primary/5 rounded-lg p-6 md:p-8 shadow-md" data-aos="fade-up">
+                <form id="join-form" class="space-y-6" action="https://formspree.io/f/mdkwaldo" method="POST">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                            <input type="tel" id="phone" name="phone" required 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                        <div>
+                            <label for="major" class="block text-sm font-medium text-gray-700 mb-1">Major/Field of Study</label>
+                            <input type="text" id="major" name="major" 
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base">
+                        </div>
+                        
+                        <div>
+                            <label for="year" class="block text-sm font-medium text-gray-700 mb-1">Academic Year</label>
+                            <select id="year" name="year" 
+                                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base">
+                                <option value="">Select Year</option>
+                                <option value="Preparatory">Preparatory</option>
+                                <option value="First">First</option>
+                                <option value="Second">Second</option>
+                                <option value="Third">Third</option>
+                                <option value="Fourth">Fourth</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">Interested Committees</label>
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-3">
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="web" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Web Development</span>
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="ui" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">UI/UX</span>
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="cyper" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Cyper security</span>
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="network" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Networking</span>
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="ai" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">AI</span>
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="Embedded" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Embedded System</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Why do you want to join Momenta? (Optional)</label>
+                        <textarea id="message" name="message" rows="4" 
+                                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"></textarea>
+                    </div>
+                    
+                    <div>
+                        <button type="submit" class="w-full bg-primary text-white py-3 px-4 rounded-md font-semibold hover:bg-secondary transition transform hover:scale-105 text-sm md:text-base">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+                
+                <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded-md text-center">
+                    <i class="fas fa-check-circle text-2xl mb-2"></i>
+                    <p class="font-semibold">Thank you for your application to Momenta!</p>
+                    <p>We'll be in touch soon to welcome you to our community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Contact Momenta</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+                <div data-aos="fade-right">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Get In Touch</h3>
+                    
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-map-marker-alt text-primary text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Address</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Department of Electrical Engineering<br>Higher Institute for Engineering and Technology - Kafr ELsheikh<br>Kafr ELsheikh</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-envelope text-primary text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Email</h4>
+                                <p class="text-gray-600 text-sm md:text-base">momenta@gmail.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-phone text-primary text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Phone</h4>
+                                <p class="text-gray-600 text-sm md:text-base">+20 101 613 5969</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="bg-primary/10 p-3 rounded-full mr-4">
+                                <i class="fas fa-clock text-primary text-lg"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold">Office Hours</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Saturday - Thursday: 10:00 AM - 4:00 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 md:mt-8">
+                        <h4 class="font-semibold mb-4">Follow Momenta</h4>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/momenta.hiet" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition transform hover:scale-110">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@MomentaTube" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition transform hover:scale-110">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Find Us on Campus</h3>
+                    <div class="bg-white p-4 rounded-lg shadow-md">
+                        <!-- Embedded Google Map -->
+                       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3415.973761089771!2d30.968352018356743!3d31.110461308407363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14f7ab8d5d25f91f%3A0x87d6fc29a313db38!2z2KfZhNmF2LnZh9ivINin2YTYudin2YTZiiDZhNmE2YfZhtiv2LPYqSDZiNin2YTYqtmD2YbZiNmE2YjYrNmK2Kcg2KjZg9mB2LEg2KfZhNi02YrYrg!5e0!3m2!1sar!2seg!4v1758987164560!5m2!1sar!2seg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 md:py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="bg-gradient-to-r from-primary to-secondary w-8 h-8 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-bolt text-white text-sm"></i>
+                        </div>
+                        <span class="logo-text text-xl">Momenta</span>
+                    </div>
+                    <p class="text-gray-400 text-sm md:text-base">Where every moment creates momentum for student success.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition text-sm md:text-base">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition text-sm md:text-base">About Us</a></li>
+                        <li><a href="#founders" class="text-gray-400 hover:text-white transition text-sm md:text-base">Founding Members</a></li>
+                        <li><a href="#activities" class="text-gray-400 hover:text-white transition text-sm md:text-base">Activities</a></li>
+                        <li><a href="#videos" class="text-gray-400 hover:text-white transition text-sm md:text-base">Videos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Resources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#news" class="text-gray-400 hover:text-white transition text-sm md:text-base">News</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-white transition text-sm md:text-base">Gallery</a></li>
+                        <li><a href="#join" class="text-gray-400 hover:text-white transition text-sm md:text-base">Join Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition text-sm md:text-base">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4 text-sm md:text-base">Subscribe to our newsletter for updates on events and activities.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 w-full rounded-l text-gray-800 focus:outline-none text-sm md:text-base">
+                        <button class="bg-primary px-4 py-2 rounded-r hover:bg-secondary transition text-sm md:text-base">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400 text-sm md:text-base">
+                <p>&copy; 2023 Momenta Student Club. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.add('hidden');
+                }
+            });
+        });
+        
+        // Initialize FullCalendar with responsive settings
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next',
+                    center: 'title',
+                    right: 'today dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                views: {
+                    timeGridWeek: {
+                        titleFormat: { year: 'numeric', month: 'short', day: 'numeric' }
+                    },
+                    timeGridDay: {
+                        titleFormat: { year: 'numeric', month: 'short', day: 'numeric' }
+                    }
+                },
+                events: [
+                    {
+                        title: 'wolcome party for new students',
+                        start: '2025-09-30',
+                        end: '2025-09-30',
+                        className: 'social',
+                        description: 'wolcome party for new students'
+                    },
+                    {
+                        title: 'Scientific exhibition',
+                        start: '2024-11-05',
+                        end: '2024-11-05',
+                        className: 'Exhibition',
+                        description: 'Scientific exhibition activities during the first graduates forum'
+                    },
+                    {
+                        title: 'C++ workshop',
+                        start: '2024-10-10',
+                        end: '2024-11-10',
+                        className: 'workshop',
+                        description: 'Learn the basics of c++ in this hands-on workshop.'
+                    }
+                ],
+                eventClick: function(info) {
+                    // Create a custom modal for event details on mobile
+                    if (window.innerWidth < 768) {
+                        const event = info.event;
+                        const modal = document.createElement('div');
+                        modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
+                        modal.innerHTML = `
+                            <div class="bg-white rounded-lg p-6 max-w-sm w-full">
+                                <h3 class="text-xl font-bold mb-2">${event.title}</h3>
+                                <p class="text-gray-600 mb-4">${event.extendedProps.description || 'No description available'}</p>
+                                <p class="text-sm text-gray-500 mb-4">${event.start ? event.start.toLocaleDateString() : ''}</p>
+                                <button class="bg-primary text-white px-4 py-2 rounded w-full">Close</button>
+                            </div>
+                        `;
+                        
+                        modal.querySelector('button').addEventListener('click', function() {
+                            document.body.removeChild(modal);
+                        });
+                        
+                        document.body.appendChild(modal);
+                    } else {
+                        alert('Event: ' + info.event.title + '\nDate: ' + info.event.start.toLocaleDateString());
+                    }
+                },
+                windowResize: function(view) {
+                    // Adjust calendar view based on screen size
+                    if (window.innerWidth < 768) {
+                        calendar.changeView('dayGridMonth');
+                    }
+                }
+            });
+            
+            // Set initial view based on screen size
+            if (window.innerWidth < 768) {
+                calendar.changeView('dayGridMonth');
+            }
+            
+            calendar.render();
+        });
+        
+        // Form submission with Formspree integration
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            
+            // إرسال البيانات إلى Formspree باستخدام fetch
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // عرض رسالة النجاح
+                    document.getElementById('form-success').classList.remove('hidden');
+                    form.reset();
+                    
+                    // تمرير سلس لرسالة النجاح
+                    document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    response.json().then(data => {
+                        if (data.errors) {
+                            alert('Error: ' + data.errors.map(error => error.message).join(', '));
+                        } else {
+                            alert('Oops! There was a problem submitting your form');
+                        }
+                    });
+                }
+            })
+            .catch(error => {
+                alert('Oops! There was a problem submitting your form');
+            });
+        });
+        
+        // Gallery modal functionality
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('modal-image');
+        const captionText = document.getElementById('modal-caption');
+        const closeBtn = document.querySelector('.gallery-modal-close');
+        const prevBtn = document.querySelector('.gallery-modal-prev');
+        const nextBtn = document.querySelector('.gallery-modal-next');
+        
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentIndex = 0;
+        
+        // Open modal when clicking on gallery item
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                currentIndex = index;
+                openModal();
+            });
+        });
+        
+        function openModal() {
+            modal.style.display = 'block';
+            updateModalImage();
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        
+        function updateModalImage() {
+            const imgSrc = galleryItems[currentIndex].querySelector('img').src;
+            const imgAlt = galleryItems[currentIndex].querySelector('img').alt;
+            
+            modalImg.src = imgSrc;
+            captionText.innerHTML = imgAlt;
+        }
+        
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            updateModalImage();
+        }
+        
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateModalImage();
+        }
+        
+        // Event listeners for modal controls
+        closeBtn.addEventListener('click', closeModal);
+        nextBtn.addEventListener('click', showNextImage);
+        prevBtn.addEventListener('click', showPrevImage);
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowRight') {
+                    showNextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevImage();
+                }
+            }
+        });
+
+        // بيانات الفيديوهات
+        const videoData = [
+            {
+                id: "5lCSf_vEH6c",
+                title: "Welcome to Momenta - Our Journey",
+                description: "Join us as we explore the journey of Momenta club, from its humble beginnings to becoming a thriving community for students.",
+                views: "1.2K",
+                date: "11 month ago",
+                popular: true
+            },
+            {
+                "id": "4PK-4NPf74k",
+  "title": "م أحمد الجندي | VLSM",
+  "description": "شرح لموضوع VLSM (تقسيم الشبكات ذات الطول المتغير)",
+  "views": "41",
+  "date": "4 months ago",
+  "popular": false
+            },
+           {
+  "id": "QKhbAmdepQ8",
+  "title": "الفرق بين المعهد والكلية..؟ | رأي أصحاب الشركات والمهندسين",
+  "description": "هل في فرق بين معاهد و كليات الهندسة ؟ الفرق بين كلية الهندسة والمعهد العالي للهندسة ؟ يريد كثير من طلاب مرحلة الثانوية العامة معرفة الفرق ...",
+  "views": "24k",
+  "date": "3 years ago",
+  "popular": false
+},
+            {
+                "id": "i0kbgAiG0y0",
+  "title": "AI Model Deployment",
+  "description": "AI Model Deployment",
+  "views": "46",
+  "date": "1 years ago",
+  "popular": false
+            },
+            {
+                "id": "nMTPzMGFBKs",
+  "title": "ROBOTICS SYSTEMS | Lecture 7 | #Examples Forward kinematics p1.",
+  "description": "Lecture on robotics systems covering examples of forward kinematics.",
+  "views": "139",
+  "date": "4 months ago",
+  "popular": false
+            },
+            {
+                "id": "_Mm7FrV8DRI",
+  "title": "C# | SECTION 1 | BASICS TRICKS | م. بسمله طه",
+  "description": "شرح أساسيات لغة C# وبعض الحيل البسيطة للمبتدئين",
+  "views": "318",
+  "date": "8 months ago",
+  "popular": false
+            }
+        ];
+
+        // وظائف إدارة الفيديوهات
+        let currentFilter = 'all';
+        let shuffled = false;
+
+        // عرض قائمة الفيديوهات
+        function renderVideoPlaylist(videos) {
+            const playlistContainer = document.getElementById('video-playlist');
+            playlistContainer.innerHTML = '';
+            
+            videos.forEach((video, index) => {
+                const videoItem = document.createElement('div');
+                videoItem.className = `video-playlist-item ${index === 0 ? 'active' : ''}`;
+                videoItem.setAttribute('data-video-id', video.id);
+                videoItem.innerHTML = `
+                    <div class="video-thumb-small">
+                        <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}">
+                        <div class="video-play-icon-small">
+                            <i class="fas fa-play"></i>
+                        </div>
+                    </div>
+                    <div class="video-item-info" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+                        <div class="video-item-title">${video.title}</div>
+                        <div class="video-item-meta">
+                            <span>${video.views} views</span>
+                            <span>${video.date}</span>
+                        </div>
+                    </div>
+                `;
+                
+                videoItem.addEventListener('click', function() {
+                    // إزالة النشط من جميع العناصر
+                    document.querySelectorAll('.video-playlist-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // إضافة النشط للعنصر المحدد
+                    this.classList.add('active');
+                    
+                    // تحديث الفيديو الرئيسي
+                    updateMainVideo(video.id, video.title, video.description);
+                });
+                
+                playlistContainer.appendChild(videoItem);
+            });
+        }
+
+        // تحديث الفيديو الرئيسي
+        function updateMainVideo(videoId, title, description) {
+            const iframe = document.getElementById('main-video');
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            
+            document.getElementById('main-video-title').textContent = title;
+            document.getElementById('main-video-description').textContent = description;
+            
+            // تمرير سلس للفيديو الرئيسي
+            document.getElementById('videos').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // ترتيب الفيديوهات عشوائياً
+        function shuffleVideos() {
+            const shuffledVideos = [...videoData].sort(() => Math.random() - 0.5);
+            renderVideoPlaylist(shuffledVideos);
+            
+            // إضافة تأثير الرسوم المتحركة
+            const playlist = document.getElementById('video-playlist');
+            playlist.classList.add('shuffle-animation');
+            setTimeout(() => {
+                playlist.classList.remove('shuffle-animation');
+            }, 500);
+            
+            shuffled = true;
+        }
+
+        // تصفية الفيديوهات حسب الشعبية
+        function filterPopularVideos() {
+            const popularVideos = videoData.filter(video => video.popular);
+            renderVideoPlaylist(popularVideos);
+            shuffled = false;
+        }
+
+        // عرض جميع الفيديوهات
+        function showAllVideos() {
+            renderVideoPlaylist(videoData);
+            shuffled = false;
+        }
+
+        // تهيئة قسم الفيديو
+        function initVideoSection() {
+            // عرض الفيديوهات الأولية
+            renderVideoPlaylist(videoData);
+            
+            // إضافة مستمعي الأحداث لأزرار التحكم
+            document.getElementById('shuffle-videos').addEventListener('click', function() {
+                shuffleVideos();
+                updateControlButtons(this);
+            });
+            
+            document.getElementById('show-all').addEventListener('click', function() {
+                showAllVideos();
+                updateControlButtons(this);
+            });
+            
+            document.getElementById('show-popular').addEventListener('click', function() {
+                filterPopularVideos();
+                updateControlButtons(this);
+            });
+        }
+
+        // تحديث أزرار التحكم
+        function updateControlButtons(activeButton) {
+            document.querySelectorAll('.video-control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            activeButton.classList.add('active');
+        }
+
+        // استدعاء التهيئة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            initVideoSection();
+        });
+    </script>
+</body>
+</html>
