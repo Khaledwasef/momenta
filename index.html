@@ -1549,7 +1549,7 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Join Momenta</h2>
             
             <div class="bg-gradient-to-br from-gray-50 to-primary/5 rounded-lg p-6 md:p-8 shadow-md" data-aos="fade-up">
-                <form id="join-form" class="space-y-6" action="https://formspree.io/f/mdkwaldo" method="POST">
+                <form id="join-form" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
@@ -1930,34 +1930,26 @@
             const formData = new FormData(form);
             
             // إرسال البيانات إلى Formspree باستخدام fetch
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // عرض رسالة النجاح
-                    document.getElementById('form-success').classList.remove('hidden');
-                    form.reset();
-                    
-                    // تمرير سلس لرسالة النجاح
-                    document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    response.json().then(data => {
-                        if (data.errors) {
-                            alert('Error: ' + data.errors.map(error => error.message).join(', '));
-                        } else {
-                            alert('Oops! There was a problem submitting your form');
-                        }
-                    });
-                }
-            })
-            .catch(error => {
-                alert('Oops! There was a problem submitting your form');
-            });
+            // إرسال البيانات إلى Google Sheets
+fetch('https://script.google.com/macros/s/AKfycbye80w3kFswWtDiRZsTovk8L4Js0-Ht_hHg5RrJ0AkvS2Ru90lNilUOr5eQklznqntImw/exec', {
+    method: 'POST',
+    body: formData
+})
+.then(response => response.text())
+.then(text => {
+    if (text.includes('Success')) {
+        // نفس الطريقة الأصلية لعرض النجاح
+        document.getElementById('form-success').classList.remove('hidden');
+        form.reset();
+        document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.error('Error response:', text);
+    }
+})
+.catch(error => {
+    console.error('Error:', error);
+});
+
         });
         
         // Gallery modal functionality
@@ -2238,6 +2230,5 @@
     </script>
 </body>
 </html>
-
 
 
