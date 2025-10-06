@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -1948,143 +1948,6 @@
             calendar.render();
         });
         
-        // Form submission with Google Apps Script integration
-        document.getElementById('join-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-            
-            // إظهار حالة التحميل
-            submitButton.textContent = 'جاري الإرسال...';
-            submitButton.disabled = true;
-            
-            // إخفاء الرسائل السابقة
-            document.getElementById('form-success').classList.add('hidden');
-            document.getElementById('form-error').classList.add('hidden');
-            
-            // جمع البيانات من الفورم
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                major: formData.get('major'),
-                year: formData.get('year'),
-                committees: formData.getAll('committees'),
-                message: formData.get('message')
-            };
-            
-            // إرسال البيانات إلى Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbzclqSz61aTD5l9_FI5v7uO4yfgz7v9XSeLDPBw8VuptRvAXiNo8_zLcT8L31JMt9at5A/exec', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.result === 'success') {
-                    // عرض رسالة النجاح
-                    document.getElementById('form-success').classList.remove('hidden');
-                    form.reset();
-                    
-                    // تمرير سلس لرسالة النجاح
-                    document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
-                } else {
-                    throw new Error('Server returned an error');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                document.getElementById('form-error').classList.remove('hidden');
-                document.getElementById('form-error').scrollIntoView({ behavior: 'smooth' });
-            })
-            .finally(() => {
-                // إعادة تعيين حالة الزر
-                submitButton.textContent = originalButtonText;
-                submitButton.disabled = false;
-            });
-        });
-        
-        // Gallery modal functionality
-        const modal = document.getElementById('gallery-modal');
-        const modalImg = document.getElementById('modal-image');
-        const captionText = document.getElementById('modal-caption');
-        const closeBtn = document.querySelector('.gallery-modal-close');
-        const prevBtn = document.querySelector('.gallery-modal-prev');
-        const nextBtn = document.querySelector('.gallery-modal-next');
-        
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        let currentIndex = 0;
-        
-        // Open modal when clicking on gallery item
-        galleryItems.forEach((item, index) => {
-            item.addEventListener('click', function() {
-                currentIndex = index;
-                openModal();
-            });
-        });
-        
-        function openModal() {
-            modal.style.display = 'block';
-            updateModalImage();
-        }
-        
-        function closeModal() {
-            modal.style.display = 'none';
-        }
-        
-        function updateModalImage() {
-            const imgSrc = galleryItems[currentIndex].querySelector('img').src;
-            const imgAlt = galleryItems[currentIndex].querySelector('img').alt;
-            
-            modalImg.src = imgSrc;
-            captionText.innerHTML = imgAlt;
-        }
-        
-        function showNextImage() {
-            currentIndex = (currentIndex + 1) % galleryItems.length;
-            updateModalImage();
-        }
-        
-        function showPrevImage() {
-            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-            updateModalImage();
-        }
-        
-        // Event listeners for modal controls
-        closeBtn.addEventListener('click', closeModal);
-        nextBtn.addEventListener('click', showNextImage);
-        prevBtn.addEventListener('click', showPrevImage);
-        
-        // Close modal when clicking outside the image
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (modal.style.display === 'block') {
-                if (e.key === 'Escape') {
-                    closeModal();
-                } else if (e.key === 'ArrowRight') {
-                    showNextImage();
-                } else if (e.key === 'ArrowLeft') {
-                    showPrevImage();
-                }
-            }
-        });
-
         // بيانات الفيديوهات
         const videoData = [
             {
@@ -2283,6 +2146,143 @@
                 }
             });
         }
+
+        // Form submission with Google Apps Script integration
+        document.getElementById('join-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            
+            // إظهار حالة التحميل
+            submitButton.textContent = 'جاري الإرسال...';
+            submitButton.disabled = true;
+            
+            // إخفاء الرسائل السابقة
+            document.getElementById('form-success').classList.add('hidden');
+            document.getElementById('form-error').classList.add('hidden');
+            
+            // جمع البيانات من الفورم
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                major: formData.get('major'),
+                year: formData.get('year'),
+                committees: formData.getAll('committees'),
+                message: formData.get('message')
+            };
+            
+            // إرسال البيانات إلى Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbzclqSz61aTD5l9_FI5v7uO4yfgz7v9XSeLDPBw8VuptRvAXiNo8_zLcT8L31JMt9at5A/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.result === 'success') {
+                    // عرض رسالة النجاح
+                    document.getElementById('form-success').classList.remove('hidden');
+                    form.reset();
+                    
+                    // تمرير سلس لرسالة النجاح
+                    document.getElementById('form-success').scrollIntoView({ behavior: 'smooth' });
+                } else {
+                    throw new Error('Server returned an error');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('form-error').classList.remove('hidden');
+                document.getElementById('form-error').scrollIntoView({ behavior: 'smooth' });
+            })
+            .finally(() => {
+                // إعادة تعيين حالة الزر
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            });
+        });
+        
+        // Gallery modal functionality
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('modal-image');
+        const captionText = document.getElementById('modal-caption');
+        const closeBtn = document.querySelector('.gallery-modal-close');
+        const prevBtn = document.querySelector('.gallery-modal-prev');
+        const nextBtn = document.querySelector('.gallery-modal-next');
+        
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        let currentIndex = 0;
+        
+        // Open modal when clicking on gallery item
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', function() {
+                currentIndex = index;
+                openModal();
+            });
+        });
+        
+        function openModal() {
+            modal.style.display = 'block';
+            updateModalImage();
+        }
+        
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+        
+        function updateModalImage() {
+            const imgSrc = galleryItems[currentIndex].querySelector('img').src;
+            const imgAlt = galleryItems[currentIndex].querySelector('img').alt;
+            
+            modalImg.src = imgSrc;
+            captionText.innerHTML = imgAlt;
+        }
+        
+        function showNextImage() {
+            currentIndex = (currentIndex + 1) % galleryItems.length;
+            updateModalImage();
+        }
+        
+        function showPrevImage() {
+            currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateModalImage();
+        }
+        
+        // Event listeners for modal controls
+        closeBtn.addEventListener('click', closeModal);
+        nextBtn.addEventListener('click', showNextImage);
+        prevBtn.addEventListener('click', showPrevImage);
+        
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                } else if (e.key === 'ArrowRight') {
+                    showNextImage();
+                } else if (e.key === 'ArrowLeft') {
+                    showPrevImage();
+                }
+            }
+        });
 
         // استدعاء التهيئة عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
