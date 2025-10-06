@@ -1946,7 +1946,7 @@
 
     // هنا حط أي أكشن عايزه يحصل بعد الإرسال
     document.getElementById("join-form").reset();
-    document.querySelector(".success-message").style.display = "block";
+    document.getElementById("form-success").classList.remove("hidden");
   } catch (err) {
     console.error(err);
   }
