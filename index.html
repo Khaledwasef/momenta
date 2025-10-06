@@ -830,6 +830,50 @@
             75% { transform: translateX(-3px); }
             100% { transform: translateX(0); }
         }
+
+         .head-member {
+            border: 3px solid #f59e0b;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+        }
+        
+        .head-member::before {
+            content: 'Head of Momenta';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f59e0b;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+            white-space: nowrap;
+        }
+        
+        .vice-head-member {
+            border: 3px solid #4f46e5;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
+        }
+        
+        .vice-head-member::before {
+            content: 'Vice Head';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #4f46e5;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 10;
+            white-space: nowrap;
+        }
         
         /* تحسينات الخريطة لجعلها متجاوبة */
         .map-container {
@@ -1123,21 +1167,10 @@
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8" data-aos="fade-up">
                 <!-- Team Member 1 -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
-                    <div class="relative inline-block">
-                        <img src="./images/khaled wasef.jpg" 
-                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
-                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                           <i class="fas fa-star text-xs"></i>
-                        </div>
-                    </div>
-                    <h4 class="font-bold text-lg">Khaled Wasef</h4>
-                    <p class="text-primary mb-2">Web Development</p>
-                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
-                </div>
+
                 
-                <!-- Team Member 2 -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                <!-- Team Member 1 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover head-member">
                     <div class="relative inline-block">
                         <img src="./images/mostafa abdelzaher.png" 
                              alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
@@ -1150,46 +1183,180 @@
                     <p class="text-primary mb-2">Head of momenta</p>
                     <p class="text-gray-600 text-sm">third year computer and control engineering</p>
                 </div>
-                
-                <!-- Team Member 3 -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
-                    <div class="relative inline-block">
-                        <img src="./images/mostafa Waliallah.jpg" 
-                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
-                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                            <i class="fas fa-chart-line text-xs"></i>
-                        </div>
-                    </div>
-                    <h4 class="font-bold text-lg">Mostafa Waliallah</h4>
-                    <p class="text-primary mb-2">HR</p>
-                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
-                </div>
-                <!-- Team Member 4 -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                <!-- Team Member 2 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover vice-head-member">
                     <div class="relative inline-block">
                         <img src="./images/yehia.png" 
                              alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
                         <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                            <i class="fas fa-chart-line text-xs"></i>
+                             <i class="fas fa-user-tie text-xs"></i>
                         </div>
                     </div>
                     <h4 class="font-bold text-lg">Yehia Elrify</h4>
                     <p class="text-primary mb-2">Vice Head</p>
                     <p class="text-gray-600 text-sm">third year computer and control engineering</p>
                 </div>
+
+                <!-- Team Member 3 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover vice-head-member">
+                    <div class="relative inline-block">
+                        <img src="./images/eldacrory.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-user-tie text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Ahmed Eldakrory</h4>
+                    <p class="text-primary mb-2">Vice Head</p>
+                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
+                </div>
+                <!-- Team Member 4 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/mamdouh.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                             <i class="fas fa-mobile-alt text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Mamdouk Saleh</h4>
+                    <p class="text-primary mb-2">Mobile Head</p>
+                    <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
+                </div>
                 <!-- Team Member 5 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/yehia.png" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                             <i class="fas fa-mobile-alt text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Yehia Elrify</h4>
+                    <p class="text-primary mb-2">Mobile Vice Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+                <!-- Team Member 6 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/mostafa Waliallah.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                             <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Mostafa Ashraf</h4>
+                    <p class="text-primary mb-2">Data Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+                <!-- Team Member 7 -->
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/eldacrory.jpg" 
                              alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
                         <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                            <i class="fas fa-chart-line text-xs"></i>
+                            <i class="fas fa-shield-alt text-xs"></i>
                         </div>
                     </div>
-                    <h4 class="font-bold text-lg">Ahmed Eldakrory</h4>
-                    <p class="text-primary mb-2">CO Head</p>
-                    <p class="text-gray-600 text-sm">third year computer and control engineering</p>
+                    <h4 class="font-bold text-lg">Ahmed Eldkrory</h4>
+                    <p class="text-primary mb-2">Cyper security Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
                 </div>
+                <!-- Team Member 8 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/abosha.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Abdelrahman Elsaid</h4>
+                    <p class="text-primary mb-2">Cyper security Vice Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+                <!-- Team Member 9 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/aya.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-laptop-code text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Aya Ebida</h4>
+                    <p class="text-primary mb-2">Web Head</p>
+                    <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
+                </div>
+                <!-- Team Member 10 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/khaled wasef.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                             <i class="fas fa-laptop-code text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Khaled Wasef</h4>
+                    <p class="text-primary mb-2">Web Vice Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+                <!-- Team Member 11 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/saied.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-robot text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Ahmed Saied</h4>
+                    <p class="text-primary mb-2">Robotics Head</p>
+                    <p class="text-gray-600 text-sm">second year electrical engineering</p>
+                </div>
+                <!-- Team Member 12 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/fares.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-robot text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Fares Ali</h4>
+                    <p class="text-primary mb-2">Robotics Vice Head</p>
+                    <p class="text-gray-600 text-sm">second year electrical engineering</p>
+                </div>
+                <!-- Team Member 13 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/maya.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-bullhorn text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Maya Adham</h4>
+                    <p class="text-primary mb-2">PR Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+                <!-- Team Member 14 -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/fares.jpg" 
+                             alt="Team Member" class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                        <div class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-photo-video text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Fares Ali</h4>
+                    <p class="text-primary mb-2">Media Vice Head</p>
+                    <p class="text-gray-600 text-sm">second year electrical engineering</p>
+                </div>
+                <!-- Team Member 13 -->
+                <!-- Team Member 13 -->
+                <!-- Team Member 13 -->
+                
             </div>
         </div>
     </section>
@@ -1598,24 +1765,20 @@
                                 <span class="ml-2">Web Development</span>
                             </label>
                             <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="ui" class="rounded text-primary focus:ring-primary">
-                                <span class="ml-2">UI/UX</span>
+                                <input type="checkbox" name="committees" value="Data" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Data Engineering</span>
                             </label>
                             <label class="flex items-center text-sm">
                                 <input type="checkbox" name="committees" value="cyper" class="rounded text-primary focus:ring-primary">
                                 <span class="ml-2">Cyper security</span>
                             </label>
                             <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="network" class="rounded text-primary focus:ring-primary">
-                                <span class="ml-2">Networking</span>
+                                <input type="checkbox" name="committees" value="mopile" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Mobile Application</span>
                             </label>
                             <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="ai" class="rounded text-primary focus:ring-primary">
-                                <span class="ml-2">AI</span>
-                            </label>
-                            <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="Embedded" class="rounded text-primary focus:ring-primary">
-                                <span class="ml-2">Embedded System</span>
+                                <input type="checkbox" name="committees" value="robotics" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Robotics</span>
                             </label>
                         </div>
                     </div>
@@ -1703,7 +1866,7 @@
                                 <i class="fab fa-youtube"></i>
                             </a>
                             <a href="https://www.linkedin.com/company/momenta-hiet/" class="bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-secondary transition transform hover:scale-110">
-                                <i class="fab fa-linked-in"></i>
+                                <i class="fab fa-linkedin"></i>
                             </a>
                         </div>
                     </div>
