@@ -876,6 +876,172 @@
             z-index: 10;
             white-space: nowrap;
         }
+
+        /* Past Leaders Section with Full Images */
+#past-leaders {
+    position: relative;
+    overflow: hidden;
+}
+
+#past-leaders::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%234f46e5' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.5;
+}
+
+/* Full Image Container Styles */
+#past-leaders .w-48 {
+    width: 12rem; /* 192px - even larger */
+}
+
+#past-leaders .h-48 {
+    height: 12rem; /* 192px - even larger */
+}
+
+/* Full Image Display - No Cropping */
+#past-leaders .object-contain {
+    object-fit: contain !important;
+    background-color: #f8fafc; /* Light background to fill empty space */
+}
+
+/* Enhanced Card Hover Effects */
+.group:hover .group-hover\:opacity-100 {
+    opacity: 1;
+}
+
+/* Gradient Text */
+.bg-gradient-to-r.from-primary.to-accent.bg-clip-text.text-transparent {
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* LinkedIn Icon Hover Effects */
+.text-gray-400.hover\:text-primary {
+    transition: all 0.3s ease;
+}
+
+.text-gray-400.hover\:text-primary:hover {
+    transform: scale(1.2);
+}
+
+/* Image container hover effects */
+#past-leaders .w-48.h-48.rounded-2xl {
+    transition: all 0.3s ease;
+    background-color: #f8fafc; /* Match the image background */
+}
+
+.group:hover #past-leaders .w-48.h-48.rounded-2xl {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #past-leaders .grid.grid-cols-1.md\:grid-cols-2.xl\:grid-cols-3 {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    #past-leaders .text-4xl.md\:text-5xl {
+        font-size: 2rem;
+    }
+    
+    #past-leaders .text-xl.md\:text-2xl {
+        font-size: 1.125rem;
+    }
+    
+    /* Slightly smaller images on tablet */
+    #past-leaders .w-48 {
+        width: 10rem; /* 160px */
+    }
+    
+    #past-leaders .h-48 {
+        height: 10rem; /* 160px */
+    }
+}
+
+@media (max-width: 480px) {
+    /* Even smaller images on mobile */
+    #past-leaders .w-48 {
+        width: 8rem; /* 128px */
+    }
+    
+    #past-leaders .h-48 {
+        height: 8rem; /* 128px */
+    }
+}
+
+/* Equal card heights and consistent styling */
+#past-leaders .bg-white.rounded-2xl {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+#past-leaders .bg-white.rounded-2xl:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Flex-grow for equal spacing */
+#past-leaders .flex-grow {
+    flex-grow: 1;
+}
+
+/* Legacy message responsive */
+@media (max-width: 768px) {
+    #past-leaders .flex.flex-col.sm\:flex-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    #past-leaders .flex.items-center {
+        justify-content: center;
+    }
+}
+
+/* Center alignment for all content */
+#past-leaders .text-center {
+    text-align: center;
+}
+
+/* Enhanced badge styling */
+#past-leaders .absolute.-bottom-3 {
+    z-index: 10;
+}
+
+/* Ensure images maintain aspect ratio */
+#past-leaders img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Alternative: If you want to maintain square containers but show full images */
+.full-image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+}
+
+.full-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
         
         /* تحسينات الخريطة لجعلها متجاوبة */
         .map-container {
@@ -1373,6 +1539,172 @@
             </div>
         </div>
     </section>
+
+    <!-- Past Leaders Section - Full Images -->
+<section id="past-leaders" class="section-padding bg-gradient-to-br from-gray-50 via-white to-blue-50 relative overflow-hidden">
+    <!-- Background Elements -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-20 h-20 bg-primary rounded-full"></div>
+        <div class="absolute bottom-20 right-20 w-16 h-16 bg-accent rounded-full"></div>
+        <div class="absolute top-1/2 left-1/4 w-12 h-12 bg-secondary rounded-full"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 relative z-10">
+        <!-- Section Header -->
+        <div class="text-center mb-16" data-aos="fade-up">
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                Our Past Leaders
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+                Celebrating the dedicated students who guided Momenta through its journey of growth and innovation
+            </p>
+            <div class="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-6 rounded-full"></div>
+        </div>
+
+        <!-- Past Leaders Grid - Full Images -->
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+            <!-- Past Leader 1 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="100">
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    <!-- Full Image Section -->
+                    <div class="mb-6 text-center">
+                        <div class="relative inline-block">
+                            <div class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl mx-auto">
+                                <img src="./images/past 2.jpg" alt="" class="w-full h-full object-contain">
+                            </div>
+                            <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                2022-2023
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h4 class="font-bold text-gray-900 text-xl">Mahmoud Elwishy</h4>
+                        <p class="text-primary font-semibold text-lg">Head of Momenta</p>
+                    </div>
+                    
+                  
+                    
+                    <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-4 mb-4">
+                        <p class="text-gray-700 italic text-sm text-center">
+                            "His leadership marked our transition from a small club to a major student organization."
+                        </p>
+                    </div>
+                    
+                    <div class="flex justify-between items-center pt-4 border-t border-gray-100">
+                        
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Leader 2 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="200">
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    <!-- Full Image Section -->
+                    <div class="mb-6 text-center">
+                        <div class="relative inline-block">
+                            <div class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl mx-auto">
+                                <img src="./images/past 1.jpg" alt="" class="w-full h-full object-contain">
+                            </div>
+                            <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                2023-2024
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h4 class="font-bold text-gray-900 text-xl">Eslam Bakr</h4>
+                        <p class="text-primary font-semibold text-lg">Head Of Momenta</p>
+                    </div>
+                    
+                   
+                    
+                    <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-4 mb-4">
+                        <p class="text-gray-700 italic text-sm text-center">
+                            "He believed that true success comes from teamwork and consistency."
+                        </p>
+                    </div>
+                    
+                    <div class="flex justify-center items-center pt-4 border-t border-gray-100">
+                       
+                        <a href="https://www.linkedin.com/in/eslambakr37?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="flex items-center text-gray-600 hover:text-primary transition-colors group/linkedin">
+                            <i class="fab fa-linkedin text-lg mr-2"></i>
+                            <span class="text-sm font-medium group-hover/linkedin:underline">Connect</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Leader 3 -->
+            <div class="group" data-aos="fade-up" data-aos-delay="300">
+                <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 h-full flex flex-col">
+                    <!-- Full Image Section -->
+                    <div class="mb-6 text-center">
+                        <div class="relative inline-block">
+                            <div class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl mx-auto">
+                                <img src="./images/past 3.jpg" alt="" class="w-full h-full object-contain">
+                            </div>
+                            <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
+                                2024-2025
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center mb-4">
+                        <h4 class="font-bold text-gray-900 text-xl">Abdullah Ghazy</h4>
+                        <p class="text-primary font-semibold text-lg">Head Of Momenta</p>
+                    </div>
+                    
+                   
+                    
+                    <div class="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-4 mb-4">
+                        <p class="text-gray-700 italic text-sm text-center">
+                            "He led with vision and determination, always inspiring his team to give their best."
+                        </p>
+                    </div>
+                    
+                    <div class="flex justify-center items-center pt-4 border-t border-gray-100">
+                        
+                        <a href="https://www.linkedin.com/in/abdallah-ghazy?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank" class="flex items-center text-gray-600 hover:text-primary transition-colors group/linkedin">
+                            <i class="fab fa-linkedin text-lg mr-2"></i>
+                            <span class="text-sm font-medium group-hover/linkedin:underline">Connect</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Legacy Message -->
+        <div class="bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 text-white text-center shadow-xl" data-aos="fade-up">
+            <div class="max-w-4xl mx-auto">
+                <h3 class="text-2xl md:text-3xl font-bold mb-6">Building on a Strong Foundation</h3>
+                <p class="text-lg md:text-xl mb-6 opacity-90 leading-relaxed">
+                    Each generation of Momenta leaders has contributed unique strengths and perspectives, building upon the work of those who came before them. Their collective efforts have created the vibrant community we have today.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-6 mt-8">
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-users text-lg"></i>
+                        </div>
+                        <span class="text-lg font-medium">500+ Students Impacted</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-calendar-alt text-lg"></i>
+                        </div>
+                        <span class="text-lg font-medium">5+ Years of Excellence</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-trophy text-lg"></i>
+                        </div>
+                        <span class="text-lg font-medium">Multiple Awards Won</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Founding Members Section -->
     <section id="founders" class="section-padding founding-members-section">
