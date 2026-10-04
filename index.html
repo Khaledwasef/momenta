@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Momenta - Student Club</title>
+    <title>Momenta — Student Community</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,6 +20,9 @@
     <!-- FullCalendar -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="./images/485392458_1151889296947287_7131704205936737111_n.ico">
     
     <!-- Custom Styles -->
@@ -1224,6 +1227,223 @@
         }
 
         
+    
+        /* =========================================================
+           MOMENTA PREMIUM UI/UX REDESIGN
+           ========================================================= */
+        :root {
+            --premium-ink: #11142d;
+            --premium-muted: #667085;
+            --premium-line: rgba(17,20,45,.10);
+            --premium-indigo: #4f46e5;
+            --premium-violet: #7c3aed;
+            --premium-amber: #f59e0b;
+            --premium-surface: #f7f8fc;
+            --premium-white: #ffffff;
+            --premium-radius: 24px;
+        }
+        html { scroll-behavior:smooth; scroll-padding-top:96px; }
+        body { font-family:'DM Sans',sans-serif; color:var(--premium-ink); background:#fff; overflow-x:hidden; }
+        h1,h2,h3,h4,h5,h6,.brand-copy,strong,.nav-cta { font-family:'Plus Jakarta Sans',sans-serif; }
+        .section-padding { padding-top:112px !important; padding-bottom:112px !important; }
+        .section-padding > .max-w-7xl > h2,
+        .section-padding > .max-w-5xl > h2 { letter-spacing:-.045em; }
+        .card-hover { transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s, border-color .45s !important; }
+        .card-hover:hover { transform:translateY(-8px); box-shadow:0 24px 60px rgba(36,34,87,.12) !important; }
+
+        /* Navbar */
+        .premium-nav { position:fixed; top:0; left:0; width:100%; z-index:1000; padding:16px 20px; transition:.35s ease; background:linear-gradient(to bottom,rgba(8,10,27,.55),transparent); }
+        .premium-nav.scrolled { padding:10px 20px; background:rgba(255,255,255,.82); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); box-shadow:0 10px 35px rgba(17,20,45,.08); }
+        .nav-shell { max-width:1240px; margin:auto; height:68px; padding:0 10px 0 14px; display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(255,255,255,.18); border-radius:22px; background:rgba(255,255,255,.10); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px); }
+        .scrolled .nav-shell { background:rgba(255,255,255,.74); border-color:rgba(17,20,45,.07); }
+        .brand-mark { display:flex; align-items:center; gap:11px; text-decoration:none; color:#fff; min-width:180px; }
+        .scrolled .brand-mark { color:var(--premium-ink); }
+        .brand-logo { width:42px;height:42px;border-radius:13px;display:grid;place-items:center;overflow:hidden;background:linear-gradient(135deg,var(--premium-indigo),var(--premium-violet));box-shadow:0 8px 24px rgba(79,70,229,.3); }
+        .brand-logo img { width:100%;height:100%;object-fit:cover; }
+        .brand-copy { display:flex;flex-direction:column;line-height:1.05; }
+        .brand-copy strong { font-size:16px;letter-spacing:-.03em; }
+        .brand-copy small { margin-top:4px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;opacity:.65; }
+        .desktop-nav { display:flex;align-items:center;gap:3px; }
+        .desktop-nav .nav-link { position:relative;color:rgba(255,255,255,.78);font-size:12px;font-weight:600;padding:10px 12px;border-radius:12px;text-decoration:none;transition:.25s; }
+        .scrolled .desktop-nav .nav-link { color:#667085; }
+        .desktop-nav .nav-link:hover,.desktop-nav .nav-link.active { color:#fff;background:rgba(255,255,255,.12); }
+        .scrolled .desktop-nav .nav-link:hover,.scrolled .desktop-nav .nav-link.active { color:var(--premium-indigo);background:rgba(79,70,229,.07); }
+        .desktop-nav .nav-link.active:after { content:'';position:absolute;bottom:4px;left:50%;width:4px;height:4px;border-radius:50%;background:var(--premium-amber);transform:translateX(-50%); }
+        .nav-actions { display:flex;align-items:center;gap:8px; }
+        .nav-cta { display:flex;align-items:center;gap:9px;padding:12px 17px;border-radius:13px;background:#fff;color:var(--premium-indigo);font-size:12px;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.12);transition:.25s; }
+        .nav-cta:hover { transform:translateY(-2px);box-shadow:0 12px 30px rgba(0,0,0,.16); }
+        .mobile-menu-trigger { display:none;border:0;background:rgba(255,255,255,.12);color:#fff;width:42px;height:42px;border-radius:13px;cursor:pointer; }
+        .scrolled .mobile-menu-trigger { color:var(--premium-ink);background:rgba(79,70,229,.07); }
+        .premium-mobile-menu { display:none; max-width:1240px;margin:8px auto 0;border-radius:20px;background:rgba(255,255,255,.96);backdrop-filter:blur(20px);box-shadow:0 25px 70px rgba(17,20,45,.18);overflow:hidden; }
+        .premium-mobile-menu.open { display:block;animation:menuIn .3s ease both; }
+        .mobile-menu-inner { padding:12px;display:grid; }
+        .mobile-menu-inner a { display:flex;justify-content:space-between;align-items:center;padding:15px;border-radius:13px;color:var(--premium-ink);font-weight:600;text-decoration:none; }
+        .mobile-menu-inner a:hover { background:#f4f5ff;color:var(--premium-indigo); }
+        .mobile-menu-inner .mobile-join { margin-top:7px;background:var(--premium-indigo);color:#fff; }
+        @keyframes menuIn { from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none} }
+
+        /* Hero */
+        .premium-hero { position:relative;min-height:760px;padding:150px 20px 35px;display:flex;align-items:center;overflow:hidden;color:#fff;background:radial-gradient(circle at 78% 22%,rgba(124,58,237,.55),transparent 28%),radial-gradient(circle at 20% 70%,rgba(79,70,229,.4),transparent 32%),linear-gradient(135deg,#0b0d27 0%,#17144a 52%,#27195e 100%); }
+        .hero-grid { position:absolute;inset:0;opacity:.15;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);background-size:60px 60px;mask-image:linear-gradient(to bottom,black,transparent); }
+        .hero-glow { position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none; }
+        .hero-glow-one { width:360px;height:360px;right:-100px;top:100px;background:rgba(124,58,237,.23);filter:blur(50px); }
+        .hero-glow-two { width:280px;height:280px;left:-100px;bottom:40px;background:rgba(79,70,229,.22);filter:blur(55px); }
+        .hero-content-wrap { position:relative;z-index:2;width:100%;max-width:1180px;margin:auto;display:grid;grid-template-columns:1.02fr .98fr;gap:70px;align-items:center; }
+        .hero-kicker { display:flex;align-items:center;gap:9px;text-transform:uppercase;letter-spacing:.13em;font-size:10px;font-weight:700;color:rgba(255,255,255,.68);margin-bottom:23px; }
+        .hero-kicker span { width:28px;height:2px;background:var(--premium-amber);display:inline-block; }
+        .hero-copy h1 { margin:0;font-size:clamp(48px,6.3vw,84px);line-height:.99;letter-spacing:-.065em;font-weight:800; }
+        .hero-copy h1 em { font-style:normal;background:linear-gradient(90deg,#fff 5%,#b9b4ff 75%);-webkit-background-clip:text;background-clip:text;color:transparent; }
+        .hero-copy p { max-width:590px;margin:25px 0 30px;color:rgba(255,255,255,.69);font-size:17px;line-height:1.75; }
+        .hero-actions { display:flex;align-items:center;gap:12px;flex-wrap:wrap; }
+        .hero-primary,.hero-secondary { display:inline-flex;align-items:center;gap:11px;padding:15px 20px;border-radius:14px;text-decoration:none;font-weight:700;font-size:13px;transition:.3s; }
+        .hero-primary { color:#fff;background:linear-gradient(135deg,#6d63ff,#8b5cf6);box-shadow:0 15px 35px rgba(93,82,235,.32); }
+        .hero-primary:hover { transform:translateY(-3px);box-shadow:0 20px 42px rgba(93,82,235,.42); }
+        .hero-secondary { color:#fff;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06); }
+        .hero-secondary:hover { background:rgba(255,255,255,.12);transform:translateY(-3px); }
+        .play-icon { width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:rgba(255,255,255,.12); }
+        .hero-proof { display:flex;align-items:center;gap:13px;margin-top:42px; }
+        .avatar-stack { display:flex;align-items:center; }
+        .avatar-stack img,.avatar-stack span { width:34px;height:34px;border-radius:50%;border:2px solid #17144a;margin-left:-8px;object-fit:cover; }
+        .avatar-stack img:first-child { margin-left:0; }
+        .avatar-stack span { display:grid;place-items:center;background:#fff;color:var(--premium-indigo);font-size:11px;font-weight:800; }
+        .hero-proof strong,.hero-proof small { display:block; }
+        .hero-proof strong { font-size:11px; }
+        .hero-proof small { color:rgba(255,255,255,.48);font-size:10px;margin-top:2px; }
+        .hero-visual { position:relative;min-height:540px;display:flex;align-items:center;justify-content:center; }
+        .hero-photo-frame { position:relative;width:min(470px,100%);aspect-ratio:4/5;border-radius:34px;overflow:hidden;transform:rotate(2deg);box-shadow:0 35px 80px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.2); }
+        .hero-photo-frame img { width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.04) contrast(1.03); }
+        .photo-overlay { position:absolute;inset:0;background:linear-gradient(to top,rgba(8,10,27,.72),transparent 52%); }
+        .floating-card { position:absolute;z-index:3;display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.94);color:var(--premium-ink);border:1px solid rgba(255,255,255,.5);box-shadow:0 20px 50px rgba(0,0,0,.2);backdrop-filter:blur(14px);border-radius:16px; }
+        .event-float { left:-20px;bottom:50px;padding:13px 16px;max-width:235px; }
+        .event-float small,.event-float strong { display:block; }
+        .event-float small { font-size:9px;color:#98a0b3;text-transform:uppercase;letter-spacing:.08em; }
+        .event-float strong { font-size:11px;margin-top:3px; }
+        .float-icon { width:36px;height:36px;border-radius:11px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--premium-indigo),var(--premium-violet)); }
+        .community-float { right:-5px;top:72px;padding:10px 13px;font-size:10px;font-weight:700; }
+        .status-dot { width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 5px rgba(34,197,94,.1); }
+        .hero-stats { position:absolute;z-index:3;bottom:28px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 40px));display:flex;align-items:center;gap:0;border-top:1px solid rgba(255,255,255,.12);padding-top:20px; }
+        .hero-stats div { padding:0 45px;border-right:1px solid rgba(255,255,255,.1); }
+        .hero-stats div:first-child { padding-left:0; }
+        .hero-stats strong,.hero-stats span { display:block; }
+        .hero-stats strong { font-size:18px;letter-spacing:-.03em; }
+        .hero-stats span { margin-top:2px;font-size:9px;color:rgba(255,255,255,.48);text-transform:uppercase;letter-spacing:.12em; }
+        .hero-stats a { margin-left:auto;width:42px;height:42px;border:1px solid rgba(255,255,255,.16);border-radius:50%;display:grid;place-items:center;color:#fff;text-decoration:none;transition:.25s; }
+        .hero-stats a:hover { transform:translateY(4px);background:rgba(255,255,255,.1); }
+
+        /* Sections */
+        .section-eyebrow { display:inline-block;color:var(--premium-indigo);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px; }
+        #about h2,#activities h2,#videos h2,#news h2,#gallery h2,#contact h2 { font-size:clamp(32px,4vw,48px); }
+        #about > div > h2:after,#activities > div > h2:after,#videos > div > h2:after,#news > div > h2:after,#gallery > div > h2:after,#contact > div > h2:after { content:'';display:block;width:46px;height:3px;margin:17px auto 0;border-radius:5px;background:linear-gradient(90deg,var(--premium-indigo),var(--premium-amber)); }
+        #about { background:#fff !important; }
+        #about .grid.md\:grid-cols-2 > div:first-child { padding:35px;border:1px solid var(--premium-line);border-radius:28px;background:linear-gradient(145deg,#fff,#f7f7ff); }
+        #about .grid.md\:grid-cols-2 > div:first-child h3 { font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--premium-indigo); }
+        #about .grid.md\:grid-cols-2 > div:first-child p { line-height:1.8; }
+        #about .grid.md\:grid-cols-2 > div:last-child img { border-radius:30px;box-shadow:0 25px 60px rgba(17,20,45,.15); }
+        #about .bg-gradient-to-r { border-radius:16px !important; }
+        #about .grid.grid-cols-1 > div { position:relative;border:1px solid var(--premium-line);background:#fff !important;border-radius:24px !important;padding:25px !important;overflow:hidden; }
+        #about .grid.grid-cols-1 > div:before { content:'';position:absolute;left:0;top:0;width:100%;height:3px;background:linear-gradient(90deg,var(--premium-indigo),var(--premium-violet));transform:scaleX(0);transform-origin:left;transition:.35s; }
+        #about .grid.grid-cols-1 > div:hover:before { transform:scaleX(1); }
+        #about .grid.grid-cols-1 img { width:112px !important;height:112px !important;border:5px solid #f3f4ff; }
+        #about .grid.grid-cols-1 h4 { letter-spacing:-.02em; }
+
+        /* Activities / event cards */
+        #activities { background:linear-gradient(180deg,#f7f8fc 0%,#f2f3f8 100%) !important; }
+        .event-category { border-radius:999px !important;padding:7px 12px !important;font-size:10px !important;font-weight:800 !important;letter-spacing:.03em; }
+        #activities .grid > div { border-radius:25px !important;border:1px solid rgba(17,20,45,.07);box-shadow:0 12px 35px rgba(17,20,45,.06) !important; }
+        #activities .grid > div .relative { overflow:hidden; }
+        #activities .grid > div img { height:215px !important;transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+        #activities .grid > div:hover img { transform:scale(1.06); }
+        #activities .grid > div .absolute { border-radius:10px !important;left:14px !important;top:14px !important; }
+        .calendar-container { border-radius:25px !important;border:1px solid var(--premium-line);box-shadow:0 15px 45px rgba(17,20,45,.07) !important; }
+        #calendar .fc-toolbar-title { font-family:'Plus Jakarta Sans';font-size:18px;letter-spacing:-.03em; }
+        #calendar .fc-button-primary { background:var(--premium-indigo);border-color:var(--premium-indigo);border-radius:9px; }
+        #calendar .fc-daygrid-event { border:0;border-radius:7px;padding:3px 5px;font-size:10px; }
+        #calendar .fc-scrollgrid { border-radius:15px;overflow:hidden;border-color:#eceef4; }
+
+        /* Video */
+        .video-section { background:#fff !important; }
+        .video-section .video-container { border-radius:28px !important;box-shadow:0 25px 70px rgba(17,20,45,.15);overflow:hidden; }
+        .video-section .video-item { border-radius:16px !important;border:1px solid var(--premium-line) !important;transition:.25s !important; }
+        .video-section .video-item:hover { border-color:rgba(79,70,229,.3) !important;transform:translateX(4px); }
+
+        /* News / gallery */
+        #news { background:#f7f8fc !important; }
+        #news .bg-white,#gallery .gallery-item { border-radius:22px !important; }
+        #news .bg-white { border:1px solid var(--premium-line);box-shadow:0 10px 35px rgba(17,20,45,.05) !important; }
+        #gallery .gallery-item { overflow:hidden;box-shadow:0 10px 35px rgba(17,20,45,.08); }
+        #gallery .gallery-item img { transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+        #gallery .gallery-item:hover img { transform:scale(1.07); }
+        .gallery-icon { width:46px !important;height:46px !important;border-radius:50% !important;display:grid !important;place-items:center !important;background:rgba(255,255,255,.92) !important;color:var(--premium-indigo) !important; }
+
+        /* Join / Contact */
+        #join { background:linear-gradient(180deg,#f7f8fc,#eef0f8) !important; }
+        .join-intro { display:grid;grid-template-columns:1fr .75fr;gap:60px;align-items:end;margin-bottom:28px; }
+        .join-intro h2 { font-size:clamp(34px,4vw,52px);line-height:1.03;letter-spacing:-.05em;margin:0; }
+        .join-intro h2 em { font-style:normal;color:var(--premium-indigo); }
+        .join-intro p { color:var(--premium-muted);line-height:1.8;font-size:14px;margin:0; }
+        .join-progress { display:flex;align-items:center;gap:10px;margin-bottom:22px; }
+        .progress-step { display:flex;align-items:center;gap:7px;color:#98a0b3;font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;white-space:nowrap; }
+        .progress-step b { width:28px;height:28px;border-radius:9px;display:grid;place-items:center;background:#e7e9f2;color:#7a8192; }
+        .progress-step.active { color:var(--premium-indigo); }
+        .progress-step.active b { background:var(--premium-indigo);color:#fff; }
+        .join-progress i { height:1px;flex:1;background:#dfe2eb; }
+        #join form { border:1px solid var(--premium-line);border-radius:28px !important;background:rgba(255,255,255,.75) !important;box-shadow:0 25px 70px rgba(17,20,45,.08) !important; }
+        #join input,#join select,#join textarea { border:1px solid #e2e5ed !important;border-radius:13px !important;background:#fff !important;transition:.25s; }
+        #join input:focus,#join select:focus,#join textarea:focus { border-color:rgba(79,70,229,.5) !important;box-shadow:0 0 0 4px rgba(79,70,229,.08) !important;outline:none; }
+        #contact { background:#fff !important; }
+        #contact .bg-gray-50,#contact .bg-white { border-radius:24px !important;border:1px solid var(--premium-line); }
+
+        /* Footer + Memo */
+        footer { background:#0d1027 !important; }
+        footer a:hover { color:#fff !important; }
+        .meet-memo-btn { box-shadow:0 14px 35px rgba(79,70,229,.35) !important;transition:.3s !important; }
+        .meet-memo-btn:hover { transform:translateY(-5px) scale(1.03); }
+
+        /* Better focus + reduced motion */
+        a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible { outline:3px solid rgba(245,158,11,.5);outline-offset:3px; }
+        @media (max-width: 1024px) {
+            .desktop-nav { display:none; }
+            .mobile-menu-trigger { display:grid;place-items:center; }
+            .nav-cta { display:none; }
+            .premium-hero { min-height:auto;padding-top:135px;padding-bottom:120px; }
+            .hero-content-wrap { grid-template-columns:1fr;gap:50px; }
+            .hero-copy { text-align:center;display:flex;flex-direction:column;align-items:center; }
+            .hero-copy p { max-width:650px; }
+            .hero-visual { min-height:470px; }
+            .hero-stats { bottom:25px; }
+            .hero-stats div { padding:0 25px; }
+        }
+        @media (max-width: 640px) {
+            .premium-nav { padding:10px 12px; }
+            .nav-shell { height:58px;border-radius:17px; }
+            .brand-logo { width:36px;height:36px;border-radius:10px; }
+            .brand-copy small { display:none; }
+            .premium-hero { padding:125px 18px 125px; }
+            .hero-copy h1 { font-size:47px; }
+            .hero-copy p { font-size:14px;line-height:1.7; }
+            .hero-actions { width:100%;flex-direction:column; }
+            .hero-primary,.hero-secondary { width:100%;justify-content:center; }
+            .hero-proof { margin-top:28px; }
+            .hero-visual { min-height:400px; }
+            .hero-photo-frame { width:85%;border-radius:25px; }
+            .event-float { left:-2px;bottom:25px;transform:scale(.88);transform-origin:left bottom; }
+            .community-float { right:-3px;top:25px;transform:scale(.88);transform-origin:right top; }
+            .hero-stats { width:calc(100% - 36px); }
+            .hero-stats div { padding:0 13px; }
+            .hero-stats strong { font-size:14px; }
+            .hero-stats span { font-size:7px; }
+            .hero-stats a { width:34px;height:34px; }
+            .section-padding { padding-top:78px !important;padding-bottom:78px !important; }
+            .join-intro { grid-template-columns:1fr;gap:18px; }
+            .join-progress { gap:4px; }
+            .progress-step { font-size:0; }
+            .progress-step b { width:25px;height:25px;font-size:9px; }
+            .join-progress i { min-width:15px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *,*::before,*::after { animation-duration:.01ms !important;animation-iteration-count:1 !important;scroll-behavior:auto !important;transition-duration:.01ms !important; }
+        }
+
     </style>
     
     <!-- Tailwind Config -->
@@ -1245,63 +1465,88 @@
     </script>
 </head>
 <body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-lg sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <a href="index.html" class="flex-shrink-0 flex items-center">
-                        <div class="bg-gradient-to-r from-primary to-secondary w-10 h-10 rounded-full flex items-center justify-center mr-3">
-                            <img src="./images/485392458_1151889296947287_7131704205936737111_n.jpg" alt="" srcset="">
-                        </div>
-                        <span class="logo-text text-2xl text-gray-800">Momenta</span>
-                    </a>
-                </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">About</a>
-                    <a href="#activities" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Activities</a>
-                    <a href="#videos" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Videos</a>
-                    <a href="#news" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">News</a>
-                    <a href="#gallery" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Gallery</a>
-                    <a href="#join" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Join Us</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Contact</a>
-                </div>
-                
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+    <!-- Premium Navigation -->
+    <nav id="main-nav" class="premium-nav">
+        <div class="nav-shell">
+            <a href="#home" class="brand-mark" aria-label="Momenta home">
+                <span class="brand-logo"><img src="./images/485392458_1151889296947287_7131704205936737111_n.jpg" alt="Momenta logo"></span>
+                <span class="brand-copy"><strong>Momenta</strong><small>Student Community</small></span>
+            </a>
+
+            <div class="desktop-nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#activities" class="nav-link">Activities</a>
+                <a href="#videos" class="nav-link">Videos</a>
+                <a href="#news" class="nav-link">News</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <div class="nav-actions">
+                <a href="#join" class="nav-cta">Join Momenta <i class="fas fa-arrow-right"></i></a>
+                <button id="mobile-menu-button" class="mobile-menu-trigger" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
             </div>
         </div>
-        
-        <!-- Mobile menu -->
-        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#home" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
-                <a href="#about" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">About</a>
-                <a href="#activities" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Activities</a>
-                <a href="#videos" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Videos</a>
-                <a href="#news" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">News</a>
-                <a href="#gallery" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
-                <a href="#join" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Join Us</a>
-                <a href="#contact" class="text-gray-700 hover:text-primary block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+
+        <div id="mobile-menu" class="premium-mobile-menu" aria-hidden="true">
+            <div class="mobile-menu-inner">
+                <a href="#home">Home <i class="fas fa-arrow-right"></i></a>
+                <a href="#about">About <i class="fas fa-arrow-right"></i></a>
+                <a href="#activities">Activities <i class="fas fa-arrow-right"></i></a>
+                <a href="#videos">Videos <i class="fas fa-arrow-right"></i></a>
+                <a href="#news">News <i class="fas fa-arrow-right"></i></a>
+                <a href="#gallery">Gallery <i class="fas fa-arrow-right"></i></a>
+                <a href="#contact">Contact <i class="fas fa-arrow-right"></i></a>
+                <a href="#join" class="mobile-join">Join Momenta <i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg text-white">
-        <div class="max-w-7xl mx-auto px-4 py-20 md:py-32 text-center relative">
-            <div class="absolute top-0 left-0 w-full h-full momentum-dots opacity-10"></div>
-            <h1 class="text-3xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown">Welcome to Momenta</h1>
-            <p class="text-lg md:text-2xl mb-8 max-w-3xl mx-auto animate__animated animate__fadeInUp">Where every moment creates momentum for student success</p>
-            <div class="animate__animated animate__fadeInUp animate__delay-1s flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#join" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-yellow-500 transition transform hover:scale-105">Join Now</a>
-                <a href="#activities" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-white hover:text-primary transition">View Events</a>
+    <!-- Premium Hero -->
+    <section id="home" class="premium-hero">
+        <div class="hero-grid"></div>
+        <div class="hero-glow hero-glow-one"></div>
+        <div class="hero-glow hero-glow-two"></div>
+        <div class="hero-content-wrap">
+            <div class="hero-copy" data-aos="fade-up">
+                <div class="hero-kicker"><span></span> Student Community • Built for Momentum</div>
+                <h1>Small moments.<br><em>Big momentum.</em></h1>
+                <p>Momenta is where students connect, learn, create, and turn meaningful experiences into momentum for their future.</p>
+                <div class="hero-actions">
+                    <a href="#join" class="hero-primary">Join Momenta <i class="fas fa-arrow-right"></i></a>
+                    <a href="#activities" class="hero-secondary"><span class="play-icon"><i class="fas fa-calendar-alt"></i></span> Explore events</a>
+                </div>
+                <div class="hero-proof">
+                    <div class="avatar-stack">
+                        <img src="./images/group2.jpg" alt="Momenta members">
+                        <img src="./images/aya.jpg" alt="Momenta member">
+                        <img src="./images/khaled wasef.jpg" alt="Momenta member">
+                        <span>+</span>
+                    </div>
+                    <div><strong>One community.</strong><small>Many paths to grow.</small></div>
+                </div>
             </div>
+
+            <div class="hero-visual" data-aos="zoom-in" data-aos-delay="150">
+                <div class="hero-photo-frame">
+                    <img src="./images/group.jpg" alt="Momenta student community">
+                    <div class="photo-overlay"></div>
+                </div>
+                <div class="floating-card event-float">
+                    <span class="float-icon"><i class="fas fa-bolt"></i></span>
+                    <div><small>Next experience</small><strong>Make your moment count.</strong></div>
+                </div>
+                <div class="floating-card community-float">
+                    <span class="status-dot"></span><span>Community is active</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div><strong>01</strong><span>Community</span></div>
+            <div><strong>∞</strong><span>Possibilities</span></div>
+            <div><strong>100%</strong><span>Student-driven</span></div>
+            <a href="#about" aria-label="Scroll to about"><i class="fas fa-arrow-down"></i></a>
         </div>
     </section>
 
@@ -2057,8 +2302,14 @@
 
     <!-- Join Us Section -->
     <section id="join" class="section-padding bg-gray-50">
-        <div class="max-w-3xl mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-12" data-aos="fade-up">Join Momenta</h2>
+        <div class="max-w-5xl mx-auto px-4">
+            <div class="join-intro" data-aos="fade-up">
+                <div><span class="section-eyebrow">YOUR NEXT CHAPTER</span><h2>Find your people.<br><em>Build your momentum.</em></h2></div>
+                <p>Choose the committees, activities, and experiences that match your interests. Your application stays simple; your journey can be anything but.</p>
+            </div>
+            <div class="join-progress" aria-hidden="true">
+                <span class="progress-step active"><b>01</b> Personal</span><i></i><span class="progress-step"><b>02</b> Academic</span><i></i><span class="progress-step"><b>03</b> Committees</span><i></i><span class="progress-step"><b>04</b> Submit</span>
+            </div>
             
             <div class="bg-gradient-to-br from-gray-50 to-primary/5 rounded-lg p-6 md:p-8 shadow-md" data-aos="fade-up">
                 <form id="join-form" class="space-y-6">
@@ -2737,7 +2988,69 @@
             initMeetMemoButton();
         });
     </script>
+
+    <script>
+    /* Premium UI interactions */
+    document.addEventListener('DOMContentLoaded', function () {
+        const nav = document.getElementById('main-nav');
+        const menuBtn = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = Array.from(document.querySelectorAll('.desktop-nav .nav-link'));
+        const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+        const updateNav = () => nav.classList.toggle('scrolled', window.scrollY > 30);
+        updateNav();
+        window.addEventListener('scroll', updateNav, {passive:true});
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                const open = mobileMenu.classList.toggle('open');
+                menuBtn.setAttribute('aria-expanded', String(open));
+                menuBtn.innerHTML = open ? '<i class="fas fa-xmark"></i>' : '<i class="fas fa-bars"></i>';
+                mobileMenu.setAttribute('aria-hidden', String(!open));
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuBtn.setAttribute('aria-expanded', 'false');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }));
+        }
+
+        const setActive = () => {
+            const y = window.scrollY + 150;
+            let current = 'home';
+            sections.forEach(section => { if (section.offsetTop <= y) current = section.id; });
+            navLinks.forEach(link => link.classList.toggle('active', link.getAttribute('href') === '#' + current));
+        };
+        setActive();
+        window.addEventListener('scroll', setActive, {passive:true});
+
+        // Reveal sections that do not already use AOS.
+        if (!document.getElementById('premium-reveal-style')) {
+            const style = document.createElement('style');
+            style.id = 'premium-reveal-style';
+            style.textContent = '.premium-reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}.premium-reveal.is-visible{opacity:1;transform:none}';
+            document.head.appendChild(style);
+        }
+        const revealTargets = document.querySelectorAll('#activities .grid > div, #news .grid > div, #gallery .gallery-item');
+        const observer = new IntersectionObserver(entries => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
+        }), {threshold:.08});
+        revealTargets.forEach((el, i) => { el.classList.add('premium-reveal'); el.style.transitionDelay = Math.min(i * 50, 250) + 'ms'; observer.observe(el); });
+
+        // Magnetic-style CTA feedback on desktop.
+        if (window.matchMedia('(pointer:fine)').matches) {
+            document.querySelectorAll('.hero-primary,.nav-cta').forEach(btn => {
+                btn.addEventListener('mousemove', e => {
+                    const r = btn.getBoundingClientRect();
+                    btn.style.transform = `translate(${(e.clientX-r.left-r.width/2)*.06}px, ${(e.clientY-r.top-r.height/2)*.06}px)`;
+                });
+                btn.addEventListener('mouseleave', () => btn.style.transform = '');
+            });
+        }
+    });
+    </script>
+
 </body>
 </html>
-
 
