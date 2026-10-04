@@ -1564,6 +1564,40 @@
                     <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
                 </div>
 
+                <!-- Team Member Network Security -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/eissa.jpeg" alt="Team Member"
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
+                            decoding="async">
+                        <div
+                            class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <!-- أيقونة تعبر عن أمان الشبكات -->
+                            <i class="fas fa-network-wired text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Mohamed Eissa</h4>
+                    <p class="text-primary mb-2">Network Security Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+
+                <!-- Team Member Network Security -->
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/essam.jpeg" alt="Team Member"
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
+                            decoding="async">
+                        <div
+                            class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <!-- أيقونة تعبر عن أمان الشبكات -->
+                            <i class="fas fa-network-wired text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Mohamed Essam</h4>
+                    <p class="text-primary mb-2">Network Security Vice Head</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
+
                 <!-- Team Member 5 -->
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
@@ -1611,7 +1645,7 @@
                 <!-- Team Member 7 -->
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
-                        <img src="./images/eldacrory.jpg" alt="Team Member"
+                        <img src="./images/ahmed.jpeg" alt="Team Member"
                             class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
                             decoding="async">
                         <div
@@ -1619,25 +1653,12 @@
                             <i class="fas fa-shield-alt text-xs"></i>
                         </div>
                     </div>
-                    <h4 class="font-bold text-lg">Ahmed Eldkrory</h4>
+                    <h4 class="font-bold text-lg">Ahmed Elsaied</h4>
                     <p class="text-primary mb-2">Cyber Security Head</p>
-                    <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
+                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
                 </div>
                 <!-- Team Member 8 -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
-                    <div class="relative inline-block">
-                        <img src="./images/abosha.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
-                            decoding="async">
-                        <div
-                            class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                            <i class="fas fa-shield-alt text-xs"></i>
-                        </div>
-                    </div>
-                    <h4 class="font-bold text-lg">Abdelrahman Elsaid</h4>
-                    <p class="text-primary mb-2">Cyber Security Vice Head</p>
-                    <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
-                </div>
+                
                 <!-- Team Member 9 -->
 
                 <!-- Team Member 10 -->
@@ -2432,6 +2453,11 @@
                                 <input type="checkbox" name="committees" value="pi"
                                     class="rounded text-primary focus:ring-primary">
                                 <span class="ml-2">PI</span>
+                            </label>
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="committees" value="network-security"
+                                    class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Network Security</span>
                             </label>
                         </div>
                     </div>
@@ -4124,8 +4150,18 @@
             if (!grid) return;
             var cards = [].slice.call(grid.querySelectorAll(':scope > .card-hover'));
             var role = function (c) { var p = c.querySelector('p.text-primary'); return p ? p.textContent.trim() : '' };
-            var groups = [['Leadership', 'fa-crown', /^(head of momenta|vice head)$/i], ['Web', 'fa-laptop-code', /web/i], ['Mobile', 'fa-mobile-alt', /mobile/i], ['Data', 'fa-chart-line', /data/i], ['Cyber security', 'fa-shield-alt', /cyber/i], ['Robotics', 'fa-robot', /robotics/i], ['AI', 'fa-brain', /ai/i], ['PI', 'fa-project-diagram', /pi/i], ['Media, PR & design', 'fa-bullhorn', /^pr |media|graphics/i]]; var wrap = document.createElement('div'), used = [];
-            var add = function (title, icon, items, lead) {
+            var groups = [
+                ['Leadership', 'fa-crown', /^(head of momenta|vice head)$/i],
+                ['Web', 'fa-laptop-code', /web/i],
+                ['Mobile', 'fa-mobile-alt', /mobile/i],
+                ['Data', 'fa-chart-line', /data/i],
+                ['Cyber security', 'fa-shield-alt', /cyber/i],
+                ['Network Security', 'fa-network-wired', /network security/i], /* <-- أضفناه هنا */
+                ['AI', 'fa-brain', /ai/i],
+                ['PI', 'fa-project-diagram', /pi/i],
+                ['Robotics', 'fa-robot', /robotics/i],
+                ['Media, PR & design', 'fa-bullhorn', /^pr |media|graphics/i]
+            ]; var add = function (title, icon, items, lead) {
                 var s = document.createElement('div'); s.className = 'team-group';
                 s.innerHTML = '<h4><i class="fas ' + icon + '"></i>' + title + '<span class="team-count">' + items.length + '</span></h4>';
                 var g = document.createElement('div'); g.className = 'team-grid' + (lead ? ' lead' : '');
