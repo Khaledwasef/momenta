@@ -2547,7 +2547,7 @@
                 title: "Welcome to Momenta - Our Journey",
                 description: "Join us as we explore the journey of Momenta club, from its humble beginnings to becoming a thriving community for students.",
                 views: "1.2K",
-                date: "11 month ago",
+                date: "11 months ago",
                 popular: true
             },
             {
@@ -2564,14 +2564,14 @@
   "description": "هل في فرق بين معاهد و كليات الهندسة ؟ الفرق بين كلية الهندسة والمعهد العالي للهندسة ؟ يريد كثير من طلاب مرحلة الثانوية العامة معرفة الفرق ...",
   "views": "24k",
   "date": "3 years ago",
-  "popular": false
+  "popular": true
 },
             {
                 "id": "i0kbgAiG0y0",
   "title": "AI Model Deployment",
   "description": "AI Model Deployment",
   "views": "46",
-  "date": "1 years ago",
+  "date": "1 year ago",
   "popular": false
             },
             {
@@ -2580,7 +2580,7 @@
   "description": "Lecture on robotics systems covering examples of forward kinematics.",
   "views": "139",
   "date": "4 months ago",
-  "popular": false
+  "popular": true
             },
             {
                 "id": "_Mm7FrV8DRI",
@@ -2588,7 +2588,7 @@
   "description": "شرح أساسيات لغة C# وبعض الحيل البسيطة للمبتدئين",
   "views": "318",
   "date": "8 months ago",
-  "popular": false
+  "popular": true
             }
         ];
 
@@ -2881,6 +2881,55 @@ section h2[data-aos]{font-size:clamp(1.9rem,4vw,2.75rem);font-weight:800;margin-
 .founder-role{color:#4f46e5;font-size:.9rem;margin-bottom:.6rem}
 .founder-description{font-size:.92rem;margin:0}
 </style>
+<style id="momenta-ui-v6">
+/* ===== Videos: player + playlist ===== */
+.video-main-container{overflow:visible;box-shadow:none;margin-bottom:0;border-radius:0}
+.video-container{border-radius:16px;box-shadow:0 24px 48px -24px rgba(15,23,42,.45);background:#0f172a}
+.video-info{display:block;position:static;background:none;color:#111827;padding:1.1rem .25rem 0}
+.video-title{font-size:1.35rem;color:#111827;text-shadow:none;margin-bottom:.4rem;line-height:1.3}
+.video-description{max-height:none;opacity:1;color:#4b5563;font-size:.95rem;overflow:visible}
+.video-side{display:flex;flex-direction:column;min-height:0;margin-top:1.75rem}
+.video-side>h3{text-align:left;font-size:1.05rem;margin:1rem 0 .75rem}
+.video-controls{justify-content:flex-start;margin:0;gap:.5rem;flex-wrap:wrap}
+.video-control-btn{width:auto;height:40px;border-radius:999px;padding:0 1rem;gap:.45rem;font-size:.85rem;font-weight:600;background:#fff;border:1px solid #e5e7eb;color:#374151}
+.video-control-btn:hover{transform:none;background:#f3f4f6}
+.video-control-btn.active{background:#4f46e5;border-color:#4f46e5;color:#fff}
+#shuffle-videos::after{content:'Shuffle'}
+#show-all::after{content:'All'}
+#show-popular::after{content:'Popular'}
+.video-playlist{display:flex;flex-direction:column;gap:.6rem;margin:0;flex:1;min-height:0;overflow-y:auto;padding-right:.35rem;scrollbar-width:thin}
+.video-playlist-item{display:flex;align-items:stretch;border:1px solid #e5e7eb;border-radius:12px;background:#fff;box-shadow:none;flex:none;transition:border-color .2s,background .2s}
+.video-playlist-item:hover{transform:none;box-shadow:none;border-color:#c7d2fe;background:#f8fafc}
+.video-playlist-item.active{border:1px solid #4f46e5;background:#eef2ff;box-shadow:none}
+.video-thumb-small{width:132px;height:78px;flex:none}
+.video-play-icon-small{width:30px;height:30px}
+.video-item-info{padding:.5rem .75rem!important;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.video-item-title{font-size:.86rem;line-height:1.35;margin:0 0 .25rem;font-weight:600}
+.video-item-meta{flex-direction:column;gap:.1rem;font-size:.74rem}
+@media(min-width:1024px){
+  #videos>.max-w-7xl{display:grid;grid-template-columns:minmax(0,1.75fr) minmax(300px,1fr);grid-template-areas:"title title" "main side" "more more";column-gap:2rem}
+  #videos h2{grid-area:title}
+  .video-main-container{grid-area:main}
+  .video-side{grid-area:side;margin-top:0}
+  #videos>.max-w-7xl>.text-center:last-child{grid-area:more;margin-top:2.5rem}
+}
+@media(max-width:1023px){.video-playlist{max-height:none;overflow:visible}}
+</style>
+<script id="momenta-videos">
+document.addEventListener('DOMContentLoaded',function(){
+  var box=document.querySelector('#videos .max-w-7xl'),main=document.querySelector('.video-main-container'),
+      ctr=document.querySelector('.video-controls'),pl=document.getElementById('video-playlist');
+  if(!box||!main||!ctr||!pl)return;
+  var side=document.createElement('div');side.className='video-side';
+  var h3=pl.previousElementSibling;
+  if(h3&&h3.tagName==='H3'){h3.textContent='Up next';}
+  side.appendChild(ctr);if(h3&&h3.tagName==='H3')side.appendChild(h3);side.appendChild(pl);
+  main.after(side);
+  var fit=function(){side.style.maxHeight=window.innerWidth>=1024?main.offsetHeight+'px':''};
+  fit();window.addEventListener('resize',fit);
+  if(window.ResizeObserver)new ResizeObserver(fit).observe(main);
+});
+</script>
 <script id="momenta-team">
 document.addEventListener('DOMContentLoaded',function(){
   var grid=document.querySelector('#about .grid.sm\\:grid-cols-2');
