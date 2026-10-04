@@ -1564,40 +1564,6 @@
                     <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
                 </div>
 
-                <!-- Team Member Network Security -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
-                    <div class="relative inline-block">
-                        <img src="./images/eissa.jpeg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
-                            decoding="async">
-                        <div
-                            class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                            <!-- أيقونة تعبر عن أمان الشبكات -->
-                            <i class="fas fa-network-wired text-xs"></i>
-                        </div>
-                    </div>
-                    <h4 class="font-bold text-lg">Mohamed Eissa</h4>
-                    <p class="text-primary mb-2">Network Security Head</p>
-                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
-                </div>
-
-                <!-- Team Member Network Security -->
-                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
-                    <div class="relative inline-block">
-                        <img src="./images/essam.jpeg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
-                            decoding="async">
-                        <div
-                            class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
-                            <!-- أيقونة تعبر عن أمان الشبكات -->
-                            <i class="fas fa-network-wired text-xs"></i>
-                        </div>
-                    </div>
-                    <h4 class="font-bold text-lg">Mohamed Essam</h4>
-                    <p class="text-primary mb-2">Network Security Vice Head</p>
-                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
-                </div>
-
                 <!-- Team Member 5 -->
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
@@ -1645,7 +1611,7 @@
                 <!-- Team Member 7 -->
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
-                        <img src="./images/ahmed.jpeg" alt="Team Member"
+                        <img src="./images/eldacrory.jpg" alt="Team Member"
                             class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
                             decoding="async">
                         <div
@@ -1653,12 +1619,25 @@
                             <i class="fas fa-shield-alt text-xs"></i>
                         </div>
                     </div>
-                    <h4 class="font-bold text-lg">Ahmed Elsaied</h4>
+                    <h4 class="font-bold text-lg">Ahmed Eldkrory</h4>
                     <p class="text-primary mb-2">Cyber Security Head</p>
-                    <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                    <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
                 </div>
                 <!-- Team Member 8 -->
-                
+                <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
+                    <div class="relative inline-block">
+                        <img src="./images/abosha.jpg" alt="Team Member"
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy"
+                            decoding="async">
+                        <div
+                            class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-xs"></i>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-lg">Abdelrahman Elsaid</h4>
+                    <p class="text-primary mb-2">Cyber Security Vice Head</p>
+                    <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
+                </div>
                 <!-- Team Member 9 -->
 
                 <!-- Team Member 10 -->
@@ -2453,11 +2432,6 @@
                                 <input type="checkbox" name="committees" value="pi"
                                     class="rounded text-primary focus:ring-primary">
                                 <span class="ml-2">PI</span>
-                            </label>
-                            <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="network-security"
-                                    class="rounded text-primary focus:ring-primary">
-                                <span class="ml-2">Network Security</span>
                             </label>
                         </div>
                     </div>
@@ -4150,18 +4124,8 @@
             if (!grid) return;
             var cards = [].slice.call(grid.querySelectorAll(':scope > .card-hover'));
             var role = function (c) { var p = c.querySelector('p.text-primary'); return p ? p.textContent.trim() : '' };
-            var groups = [
-                ['Leadership', 'fa-crown', /^(head of momenta|vice head)$/i],
-                ['Web', 'fa-laptop-code', /web/i],
-                ['Mobile', 'fa-mobile-alt', /mobile/i],
-                ['Data', 'fa-chart-line', /data/i],
-                ['Cyber security', 'fa-shield-alt', /cyber/i],
-                ['Network Security', 'fa-network-wired', /network security/i], /* <-- أضفناه هنا */
-                ['AI', 'fa-brain', /ai/i],
-                ['PI', 'fa-project-diagram', /pi/i],
-                ['Robotics', 'fa-robot', /robotics/i],
-                ['Media, PR & design', 'fa-bullhorn', /^pr |media|graphics/i]
-            ]; var add = function (title, icon, items, lead) {
+            var groups = [['Leadership', 'fa-crown', /^(head of momenta|vice head)$/i], ['Web', 'fa-laptop-code', /web/i], ['Mobile', 'fa-mobile-alt', /mobile/i], ['Data', 'fa-chart-line', /data/i], ['Cyber security', 'fa-shield-alt', /cyber/i], ['Robotics', 'fa-robot', /robotics/i], ['AI', 'fa-brain', /ai/i], ['PI', 'fa-project-diagram', /pi/i], ['Media, PR & design', 'fa-bullhorn', /^pr |media|graphics/i]]; var wrap = document.createElement('div'), used = [];
+            var add = function (title, icon, items, lead) {
                 var s = document.createElement('div'); s.className = 'team-group';
                 s.innerHTML = '<h4><i class="fas ' + icon + '"></i>' + title + '<span class="team-count">' + items.length + '</span></h4>';
                 var g = document.createElement('div'); g.className = 'team-grid' + (lead ? ' lead' : '');
@@ -4195,112 +4159,103 @@
 :root{
   --ink:#111827; --muted:#4b5563; --line:#e5e7eb; --bg:#f8fafc;
   --radius:14px;
-  --shadow:0 1px 2px rgba(16,24,40,.06),0 6px 16px rgba(16,24,40,.06);
-}
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 6px 16px rgba(16,24,40,.06)}
 
 /* ---------- Base & typography ---------- */
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 section[id]{scroll-margin-top:90px}
 body{
-  font-family:'Inter','Cairo',system-ui,-apple-system,'Segoe UI',sans-serif;
-  color:var(--ink);background:var(--bg);line-height:1.65;
-  -webkit-font-smoothing:antialiased;
-}
-[style*="direction: rtl"]{font-family:'Cairo','Inter',sans-serif!important;line-height:1.8}
-h1,h2,h3{letter-spacing:-.02em;text-wrap:balance}
-p{max-width:68ch}
-.text-center p,.grid p{max-width:none}
-.section-padding{padding:4rem 1rem}
-@media(min-width:768px){.section-padding{padding:6rem 0}}
+  font-family:'Inter','Cairo',system-ui,-apple-system,'Segoe UI',sans-serif !important;
+  color:var(--ink) !important;background:var(--bg) !important;line-height:1.65 !important;
+  -webkit-font-smoothing:antialiased !important}
+[style*="direction: rtl"]{font-family:'Cairo','Inter',sans-serif!important;line-height:1.8 !important}
+h1,h2,h3{letter-spacing:-.02em !important;text-wrap:balance !important}
+p{max-width:68ch !important}
+.text-center p,.grid p{max-width:none !important}
+.section-padding{padding:4rem 1rem !important}
+@media(min-width:768px){.section-padding{padding:6rem 0 !important}}
 
 /* ---------- Navbar ---------- */
 nav.sticky{
-  background:rgba(255,255,255,.88);
-  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  box-shadow:none;border-bottom:1px solid var(--line);
-  transition:box-shadow .25s;
-}
-nav.is-scrolled{box-shadow:var(--shadow)}
-nav .rounded-full img{width:100%;height:100%;border-radius:9999px;object-fit:cover}
-.nav-link.is-active{color:var(--primary-color)}
-.nav-link.is-active::after{width:100%}
-#mobile-menu{box-shadow:var(--shadow)}
-#mobile-menu a{min-height:44px;display:flex;align-items:center}
+  background:rgba(255,255,255,.88) !important;
+  -webkit-backdrop-filter:blur(12px) !important;backdrop-filter:blur(12px) !important;
+  box-shadow:none !important;border-bottom:1px solid var(--line) !important;
+  transition:box-shadow .25s}
+nav.is-scrolled{box-shadow:var(--shadow) !important}
+nav .rounded-full img{width:100% !important;height:100% !important;border-radius:9999px !important;object-fit:cover !important}
+.nav-link.is-active{color:var(--primary-color) !important}
+.nav-link.is-active::after{width:100% !important}
+#mobile-menu{box-shadow:var(--shadow) !important}
+#mobile-menu a{min-height:44px !important;display:flex !important;align-items:center !important}
 
 /* ---------- Hero ---------- */
 .hero-bg{
-  background:linear-gradient(rgba(30,27,75,.72),rgba(30,27,75,.86)),url(./images/group.jpg);
-  background-size:cover;background-position:center;
-}
-.hero-bg h1{font-size:clamp(2.25rem,6vw,4.25rem);line-height:1.08}
-.hero-bg p{margin-inline:auto;color:rgba(255,255,255,.9)}
-.hero-bg a{border-radius:10px;min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+  background:linear-gradient(rgba(30,27,75,.72),rgba(30,27,75,.86)),url(./images/group.jpg) !important;
+  background-size:cover !important;background-position:center !important}
+.hero-bg h1{font-size:clamp(2.25rem,6vw,4.25rem) !important;line-height:1.08 !important}
+.hero-bg p{margin-inline:auto !important;color:rgba(255,255,255,.9) !important}
+.hero-bg a{border-radius:10px !important;min-height:48px !important;display:inline-flex !important;align-items:center !important;justify-content:center !important}
 
 /* ---------- Unified cards ---------- */
 .card-hover,.founder-card,.timeline-content,.video-playlist-item,
 #past-leaders .bg-white.rounded-2xl,.bg-white.rounded-lg.shadow-md,
 .calendar-container{
-  border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);
-}
+  border-radius:var(--radius) !important;border:1px solid var(--line) !important;box-shadow:var(--shadow) !important}
 .card-hover:hover,.founder-card:hover,.video-playlist-item:hover,
 #past-leaders .bg-white.rounded-2xl:hover{
-  transform:translateY(-3px);box-shadow:0 2px 4px rgba(16,24,40,.06),0 14px 28px rgba(16,24,40,.10);
-}
-.committee-card:hover{transform:none}
-.gallery-item{border-radius:var(--radius)}
+  transform:translateY(-3px) !important;box-shadow:0 2px 4px rgba(16,24,40,.06),0 14px 28px rgba(16,24,40,.10) !important}
+.committee-card:hover{transform:none !important}
+.gallery-item{border-radius:var(--radius) !important}
 
 /* Team */
-.card-hover img.rounded-full{border:3px solid #fff;box-shadow:0 0 0 1px var(--line)}
-.head-member,.vice-head-member{margin-top:.75rem}
-.head-member h4,.vice-head-member h4{margin-top:.25rem}
+.card-hover img.rounded-full{border:3px solid #fff !important;box-shadow:0 0 0 1px var(--line) !important}
+.head-member,.vice-head-member{margin-top:.75rem !important}
+.head-member h4,.vice-head-member h4{margin-top:.25rem !important}
 
 /* ---------- Timeline (dots centered on the line) ---------- */
 .timeline .timeline-item .timeline-content::after{
-  width:16px;height:16px;top:24px;background:var(--primary-color);
-  border:3px solid #fff;box-shadow:0 0 0 2px var(--primary-color);
-}
-.timeline .timeline-item:nth-child(odd) .timeline-content::after{right:-48px;left:auto}
-.timeline .timeline-item:nth-child(even) .timeline-content::after{left:-48px;right:auto}
+  width:16px !important;height:16px !important;top:24px !important;background:var(--primary-color) !important;
+  border:3px solid #fff !important;box-shadow:0 0 0 2px var(--primary-color) !important}
+.timeline .timeline-item:nth-child(odd) .timeline-content::after{right:-48px !important;left:auto !important}
+.timeline .timeline-item:nth-child(even) .timeline-content::after{left:-48px !important;right:auto !important}
 @media(max-width:768px){
-  .timeline .timeline-item:nth-child(n) .timeline-content::after{left:-47px;right:auto}
+  .timeline .timeline-item:nth-child(n) .timeline-content::after{left:-47px !important;right:auto !important}
 }
 
 /* ---------- Calendar events by category ---------- */
-.fc .fc-event{border-radius:6px;cursor:pointer}
-.fc .fc-event.social{background:#7c3aed;border-color:#7c3aed}
-.fc .fc-event.Exhibition,.fc .fc-event.Exhibitions{background:#d97706;border-color:#d97706}
-.fc .fc-event.workshop,.fc .fc-event.workshops{background:#be185d;border-color:#be185d}
-.fc .fc-button-primary{background:var(--primary-color);border-color:var(--primary-color)}
-.fc .fc-button-primary:hover{background:var(--secondary-color)}
+.fc .fc-event{border-radius:6px !important;cursor:pointer !important}
+.fc .fc-event.social{background:#7c3aed !important;border-color:#7c3aed !important}
+.fc .fc-event.Exhibition,.fc .fc-event.Exhibitions{background:#d97706 !important;border-color:#d97706 !important}
+.fc .fc-event.workshop,.fc .fc-event.workshops{background:#be185d !important;border-color:#be185d !important}
+.fc .fc-button-primary{background:var(--primary-color) !important;border-color:var(--primary-color) !important}
+.fc .fc-button-primary:hover{background:var(--secondary-color) !important}
 
 /* ---------- Forms ---------- */
 input[type=text],input[type=email],input[type=tel],select,textarea{
-  min-height:44px;border-radius:10px!important;background:#fff;
-  transition:border-color .15s,box-shadow .15s;
-}
-input[type=checkbox]{width:1.15rem;height:1.15rem}
-#join-form label.flex{min-height:40px}
-#join-form button[type=submit]{min-height:48px;border-radius:10px;transform:none!important}
-#join-form button[disabled]{opacity:.65;cursor:wait}
-#form-success{border:1px solid #86efac}
+  min-height:44px !important;border-radius:10px!important;background:#fff !important;
+  transition:border-color .15s,box-shadow .15s}
+input[type=checkbox]{width:1.15rem !important;height:1.15rem !important}
+#join-form label.flex{min-height:40px !important}
+#join-form button[type=submit]{min-height:48px !important;border-radius:10px !important;transform:none!important}
+#join-form button[disabled]{opacity:.65 !important;cursor:wait !important}
+#form-success{border:1px solid #86efac !important}
 
 /* ---------- Focus & accessibility ---------- */
-:focus-visible{outline:3px solid var(--accent-color);outline-offset:2px;border-radius:6px}
-input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
-.video-playlist-item:focus-visible{outline-offset:3px}
+:focus-visible{outline:3px solid var(--accent-color) !important;outline-offset:2px !important;border-radius:6px !important}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none !important}
+.video-playlist-item:focus-visible{outline-offset:3px !important}
 
 /* ---------- Floating widgets ---------- */
-.meet-memo-container{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.meet-memo-container{bottom:calc(20px + env(safe-area-inset-bottom,0px)) !important}
 .meet-memo-indicator{transition:opacity .4s}
-.meet-memo-indicator.is-hidden{opacity:0;pointer-events:none}
-@media(max-width:480px){.meet-memo-indicator{display:none}}
+.meet-memo-indicator.is-hidden{opacity:0 !important;pointer-events:none !important}
+@media(max-width:480px){.meet-memo-indicator{display:none !important}}
 #to-top{
-  position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:900;
-  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;
-  color:var(--primary-color);box-shadow:var(--shadow);cursor:pointer;
-  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;transform:translateY(8px);
-}
-#to-top.is-visible{opacity:1;pointer-events:auto;transform:none}
+  position:fixed !important;left:20px !important;bottom:calc(20px + env(safe-area-inset-bottom,0px)) !important;z-index:900 !important;
+  width:44px !important;height:44px !important;border-radius:50% !important;border:1px solid var(--line) !important;background:#fff !important;
+  color:var(--primary-color) !important;box-shadow:var(--shadow) !important;cursor:pointer !important;
+  opacity:0 !important;pointer-events:none !important;transition:opacity .25s,transform .25s;transform:translateY(8px) !important}
+#to-top.is-visible{opacity:1 !important;pointer-events:auto !important;transform:none !important}
 
 /* ---------- Footer ---------- */
 footer input{border-radius:8px 0 0 8px!important}
