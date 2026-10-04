@@ -4,6 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0b0f">
+
+    <!-- Performance: establish connections early -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preload" as="image" href="./images/group.jpg" fetchpriority="high">
     <title>Momenta - Student Club</title>
 
     <!-- Tailwind CSS -->
@@ -1306,6 +1312,12 @@
             }
         }
     </script>
+
+    <style>
+        /* Performance helpers: reserve image space and avoid rendering off-screen media early. */
+        img { max-width: 100%; }
+        .gallery img, [class*="gallery"] img { content-visibility: auto; }
+    </style>
 </head>
 
 <body class="bg-gray-50">
@@ -1317,7 +1329,7 @@
                     <a href="index.html" class="flex-shrink-0 flex items-center">
                         <div
                             class="bg-gradient-to-r from-primary to-secondary w-10 h-10 rounded-full flex items-center justify-center mr-3">
-                            <img src="./images/485392458_1151889296947287_7131704205936737111_n.jpg" alt="" srcset="">
+                            <img src="./images/485392458_1151889296947287_7131704205936737111_n.jpg" alt="" srcset="" loading="lazy" decoding="async">
                         </div>
                         <span class="logo-text text-2xl text-gray-800">Momenta</span>
                     </a>
@@ -1422,7 +1434,7 @@
                 </div>
 
                 <div data-aos="fade-up">
-                    <img src="./images/group2.jpg" alt="Momenta club members" class="rounded-lg shadow-lg w-full">
+                    <img src="./images/group2.jpg" alt="Momenta club members" class="rounded-lg shadow-lg w-full" loading="lazy" decoding="async">
                 </div>
             </div>
 
@@ -1436,7 +1448,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover head-member">
                     <div class="relative inline-block">
                         <img src="./images/mostafa abdelzaher.png" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-accent text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
 
@@ -1451,7 +1463,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover vice-head-member">
                     <div class="relative inline-block">
                         <img src="./images/yehia.png" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-user-tie text-xs"></i>
@@ -1466,7 +1478,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover vice-head-member">
                     <div class="relative inline-block">
                         <img src="./images/eldacrory.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-user-tie text-xs"></i>
@@ -1482,7 +1494,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/yehia.png" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-mobile-alt text-xs"></i>
@@ -1496,7 +1508,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/mostafa Waliallah.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-chart-line"></i>
@@ -1510,7 +1522,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/eldacrory.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-shield-alt text-xs"></i>
@@ -1524,7 +1536,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/abosha.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-shield-alt text-xs"></i>
@@ -1540,7 +1552,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/khaled wasef.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-laptop-code text-xs"></i>
@@ -1554,7 +1566,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/saied.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-robot text-xs"></i>
@@ -1568,7 +1580,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/fares.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-robot text-xs"></i>
@@ -1582,7 +1594,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/maya.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-bullhorn text-xs"></i>
@@ -1596,7 +1608,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/fares.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-photo-video text-xs"></i>
@@ -1610,7 +1622,7 @@
                 <div class="bg-gray-50 rounded-lg p-4 md:p-6 text-center card-hover">
                     <div class="relative inline-block">
                         <img src="./images/abo sen.jpg" alt="Team Member"
-                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover">
+                            class="w-24 h-24 md:w-32 md:h-32 rounded-full mx-auto mb-4 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute bottom-2 right-2 bg-secondary text-white rounded-full w-6 h-6 md:w-8 md:h-8 flex items-center justify-center">
                             <i class="fas fa-paint-brush text-xs"></i>
@@ -1661,7 +1673,7 @@
                             <div class="relative inline-block">
                                 <div
                                     class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl mx-auto">
-                                    <img src="./images/past 2.jpg" alt="" class="w-full h-full object-contain">
+                                    <img src="./images/past 2.jpg" alt="" class="w-full h-full object-contain" loading="lazy" decoding="async">
                                 </div>
                                 <div
                                     class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
@@ -1699,7 +1711,7 @@
                             <div class="relative inline-block">
                                 <div
                                     class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl mx-auto">
-                                    <img src="./images/past 1.jpg" alt="" class="w-full h-full object-contain">
+                                    <img src="./images/past 1.jpg" alt="" class="w-full h-full object-contain" loading="lazy" decoding="async">
                                 </div>
                                 <div
                                     class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
@@ -1742,7 +1754,7 @@
                             <div class="relative inline-block">
                                 <div
                                     class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl mx-auto">
-                                    <img src="./images/past 3.jpg" alt="" class="w-full h-full object-contain">
+                                    <img src="./images/past 3.jpg" alt="" class="w-full h-full object-contain" loading="lazy" decoding="async">
                                 </div>
                                 <div
                                     class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-primary text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg">
@@ -1830,7 +1842,7 @@
                 <!-- Founder -->
                 <div class="founder-card w-full max-w-sm" data-aos="fade-up" data-aos-delay="200">
                     <div class="founder-image">
-                        <img src="./images/dr tamer.jpg" alt="Founder - Dr. Tamer AbouElnaga">
+                        <img src="./images/dr tamer.jpg" alt="Founder - Dr. Tamer AbouElnaga" loading="lazy" decoding="async">
                         <div class="founder-badge">Founder</div>
                     </div>
                     <div class="founder-content">
@@ -1848,7 +1860,7 @@
                 <!-- Current Supervisor -->
                 <div class="founder-card w-full max-w-sm" data-aos="fade-up" data-aos-delay="300">
                     <div class="founder-image">
-                        <img src="./images/dr osama.jpg" alt="Current Supervisor - Dr. Osama Tharout">
+                        <img src="./images/dr osama.jpg" alt="Current Supervisor - Dr. Osama Tharout" loading="lazy" decoding="async">
                         <div class="founder-badge">Supervisor</div>
                     </div>
                     <div class="founder-content">
@@ -1929,7 +1941,7 @@
                     <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
                         <div class="relative">
                             <img src="./images/group2.jpg" alt="Exhibitions Festival"
-                                class="w-full h-40 md:h-48 object-cover">
+                                class="w-full h-40 md:h-48 object-cover" loading="lazy" decoding="async">
                             <div
                                 class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
                                 Oct 30 2025
@@ -1954,7 +1966,7 @@
                     <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
                         <div class="relative">
                             <img src="./images/معرض 1.jpg" alt="Basketball Tournament"
-                                class="w-full h-40 md:h-48 object-cover">
+                                class="w-full h-40 md:h-48 object-cover" loading="lazy" decoding="async">
                             <div
                                 class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
                                 Nov 5 2024
@@ -1980,7 +1992,7 @@
                     <div class="bg-white rounded-lg overflow-hidden shadow-md card-hover">
                         <div class="relative">
                             <img src="./images/c++ workshop.jpg" alt="Tech Workshop"
-                                class="w-full h-40 md:h-48 object-cover">
+                                class="w-full h-40 md:h-48 object-cover" loading="lazy" decoding="async">
                             <div
                                 class="absolute top-4 left-4 bg-accent text-white px-3 py-1 rounded-full text-sm font-semibold">
                                 Oct 10 2024
@@ -2072,7 +2084,7 @@
                 <!-- News Item 1 -->
                 <div class="bg-white rounded-lg overflow-hidden card-hover" data-aos="fade-up" data-aos-delay="100">
                     <div class="relative">
-                        <img src="./images/new 1.jpg" alt="Club Meeting" class="w-full h-40 md:h-48 object-cover">
+                        <img src="./images/new 1.jpg" alt="Club Meeting" class="w-full h-40 md:h-48 object-cover" loading="lazy" decoding="async">
                         <div
                             class="absolute top-0 left-0 bg-primary text-white px-3 py-1 rounded-br-lg text-sm font-semibold">
                             achievement
@@ -2106,42 +2118,42 @@
             <div class="gallery-grid">
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/gallery 7.jpg" alt="Visits">
+                    <img src="./images/gallery 7.jpg" alt="Visits" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/gallery 8.jpg" alt="Visits">
+                    <img src="./images/gallery 8.jpg" alt="Visits" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/gallery 9.jpg" alt="Visits">
+                    <img src="./images/gallery 9.jpg" alt="Visits" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/gallery 10.jpg" alt="Visits">
+                    <img src="./images/gallery 10.jpg" alt="Visits" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/gallery 11" alt="Visits">
+                    <img src="./images/gallery 11" alt="Visits" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
                 </div>
                 <!-- Gallery Item 1 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/490317233_1171455988323951_5710444857441712699_n.jpg" alt="Visits">
+                    <img src="./images/490317233_1171455988323951_5710444857441712699_n.jpg" alt="Visits" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2149,7 +2161,7 @@
 
                 <!-- Gallery Item 2 -->
                 <div class="gallery-item">
-                    <img src="./images/c++ workshop.jpg" alt="Workshop">
+                    <img src="./images/c++ workshop.jpg" alt="Workshop" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2157,7 +2169,7 @@
 
                 <!-- Gallery Item 3 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/galary 1.jpg" alt="Exhibitions Festival">
+                    <img src="./images/galary 1.jpg" alt="Exhibitions Festival" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2165,7 +2177,7 @@
 
                 <!-- Gallery Item 4 -->
                 <div class="gallery-item">
-                    <img src="./images/galary 2.jpg" alt="Exhibitions Festival">
+                    <img src="./images/galary 2.jpg" alt="Exhibitions Festival" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2173,7 +2185,7 @@
 
                 <!-- Gallery Item 5 -->
                 <div class="gallery-item gallery-item-wide">
-                    <img src="./images/galary 3.jpg" alt="Meeting">
+                    <img src="./images/galary 3.jpg" alt="Meeting" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2181,7 +2193,7 @@
 
                 <!-- Gallery Item 6 -->
                 <div class="gallery-item">
-                    <img src="./images/galary 4.jpg" alt="Achievements">
+                    <img src="./images/galary 4.jpg" alt="Achievements" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2189,7 +2201,7 @@
 
                 <!-- Gallery Item 7 -->
                 <div class="gallery-item gallery-item-tall">
-                    <img src="./images/galary 5.jpg" alt="Team building">
+                    <img src="./images/galary 5.jpg" alt="Team building" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2197,7 +2209,7 @@
 
                 <!-- Gallery Item 8 -->
                 <div class="gallery-item">
-                    <img src="./images/galary 6.jpg" alt="Workshop">
+                    <img src="./images/galary 6.jpg" alt="Workshop" loading="lazy" decoding="async">
                     <div class="gallery-icon">
                         <i class="fas fa-search-plus"></i>
                     </div>
@@ -2211,7 +2223,7 @@
         <span class="gallery-modal-close">&times;</span>
         <span class="gallery-modal-prev">&#10094;</span>
         <span class="gallery-modal-next">&#10095;</span>
-        <img class="gallery-modal-content" id="modal-image">
+        <img class="gallery-modal-content" id="modal-image" loading="lazy" decoding="async">
         <div id="modal-caption" class="gallery-modal-caption"></div>
     </div>
 
@@ -2481,7 +2493,7 @@
         </div>
         <div class="meet-memo-btn" id="meet-memo-btn">
             <!-- استبدل هذا بتميمة الأسرة -->
-            <img src="./images/5.png" alt="Momenta Logo" class="meet-memo-logo">
+            <img src="./images/5.png" alt="Momenta Logo" class="meet-memo-logo" loading="lazy" decoding="async">
         </div>
     </div>
 
@@ -2807,7 +2819,7 @@
                 videoItem.setAttribute('data-video-id', video.id);
                 videoItem.innerHTML = `
                     <div class="video-thumb-small">
-                        <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}">
+                        <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}" loading="lazy" decoding="async">
                         <div class="video-play-icon-small">
                             <i class="fas fa-play"></i>
                         </div>
