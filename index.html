@@ -2930,6 +2930,34 @@ document.addEventListener('DOMContentLoaded',function(){
   if(window.ResizeObserver)new ResizeObserver(fit).observe(main);
 });
 </script>
+<style id="momenta-ui-v7">
+/* ===== Meet Memo popup ===== */
+.video-popup{background:rgba(15,23,42,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);padding:1rem}
+.video-popup-content{width:100%;max-width:880px;max-height:94vh;display:flex;flex-direction:column;background:#fff;border-radius:20px;box-shadow:0 40px 80px -30px rgba(0,0,0,.6);animation:memoIn .25s ease}
+@keyframes memoIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+.video-popup-header{background:#fff;color:#111827;padding:.9rem 1.1rem .9rem 1.4rem;border-bottom:1px solid #e5e7eb}
+.video-popup-header h3{font-size:1.05rem;font-weight:700;margin:0}
+.video-popup-close{width:36px;height:36px;border-radius:50%;background:#f3f4f6;color:#374151;font-size:1.4rem;line-height:1;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.video-popup-close:hover{background:#e5e7eb}
+.video-popup-body{background:#000;min-height:0}
+.video-popup .video-container{padding-bottom:0;height:auto;aspect-ratio:16/9;max-height:calc(94vh - 70px);border-radius:0;box-shadow:none;background:#000}
+.video-popup video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#000;outline:none}
+body.no-scroll{overflow:hidden}
+</style>
+<script id="momenta-popup">
+document.addEventListener('DOMContentLoaded',function(){
+  var pop=document.getElementById('video-popup');if(!pop)return;
+  pop.setAttribute('role','dialog');pop.setAttribute('aria-modal','true');
+  pop.setAttribute('aria-label','Meet Memo introduction video');
+  var close=document.getElementById('video-popup-close');
+  if(close)close.setAttribute('aria-label','Close video');
+  new MutationObserver(function(){
+    var open=pop.style.display==='flex';
+    document.body.classList.toggle('no-scroll',open);
+    if(open&&close)close.focus({preventScroll:true});
+  }).observe(pop,{attributes:true,attributeFilter:['style']});
+});
+</script>
 <script id="momenta-team">
 document.addEventListener('DOMContentLoaded',function(){
   var grid=document.querySelector('#about .grid.sm\\:grid-cols-2');
