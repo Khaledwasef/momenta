@@ -1294,16 +1294,23 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero-bg text-white">
-        <div class="max-w-7xl mx-auto px-4 py-20 md:py-32 text-center relative">
-            <div class="absolute top-0 left-0 w-full h-full momentum-dots opacity-10"></div>
-            <h1 class="text-3xl md:text-6xl font-bold mb-4 animate__animated animate__fadeInDown">Welcome to Momenta</h1>
-            <p class="text-lg md:text-2xl mb-8 max-w-3xl mx-auto animate__animated animate__fadeInUp">Where every moment creates momentum for student success</p>
-            <div class="animate__animated animate__fadeInUp animate__delay-1s flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#join" class="bg-accent text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-yellow-500 transition transform hover:scale-105">Join Now</a>
-                <a href="#activities" class="bg-transparent border-2 border-white text-white px-6 py-3 rounded-lg font-semibold inline-block hover:bg-white hover:text-primary transition">View Events</a>
-            </div>
-        </div>
-    </section>
+  <div class="max-w-7xl mx-auto px-4 hero-inner">
+    <div class="hero-copy">
+      <h1>Every moment builds momentum.</h1>
+      <p>Momenta is the student community at HIET Kafr El-Sheikh where engineering students learn, build and compete together in web, mobile, data, cyber security and robotics.</p>
+      <div class="hero-actions">
+        <a href="#join" class="btn-primary">Join Momenta</a>
+        <a href="#activities" class="btn-ghost">See our events</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div><strong>2019</strong><span>Founded</span></div>
+      <div><strong>5</strong><span>Committees</span></div>
+      <div><strong data-stat="members">12</strong><span>Team leaders</span></div>
+      <div><strong>3</strong><span>Past heads</span></div>
+    </div>
+  </div>
+</section>
 
     <!-- About Section -->
     <section id="about" class="section-padding bg-white">
@@ -1331,7 +1338,7 @@
                 </div>
             </div>
             
-            <h3 class="text-2xl font-bold text-center mb-6 md:mb-8" data-aos="fade-up">Our Leadership Team</h3>
+            <h3 class="text-2xl font-bold text-center mb-6 md:mb-8" data-aos="fade-up">Meet the team</h3>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8" data-aos="fade-up">
                 <!-- Team Member 1 -->
@@ -1387,7 +1394,7 @@
                              <i class="fas fa-mobile-alt text-xs"></i>
                         </div>
                     </div>
-                    <h4 class="font-bold text-lg">Mamdouk Saleh</h4>
+                    <h4 class="font-bold text-lg">Mamdouh Saleh</h4>
                     <p class="text-primary mb-2">Mobile Head</p>
                     <p class="text-gray-600 text-sm">Fourth year computer and control engineering</p>
                 </div>
@@ -1427,7 +1434,7 @@
                         </div>
                     </div>
                     <h4 class="font-bold text-lg">Ahmed Eldkrory</h4>
-                    <p class="text-primary mb-2">Cyper security Head</p>
+                    <p class="text-primary mb-2">Cyber Security Head</p>
                     <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
                 </div>
                 <!-- Team Member 8 -->
@@ -1440,7 +1447,7 @@
                         </div>
                     </div>
                     <h4 class="font-bold text-lg">Abdelrahman Elsaid</h4>
-                    <p class="text-primary mb-2">Cyper security Vice Head</p>
+                    <p class="text-primary mb-2">Cyber Security Vice Head</p>
                     <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
                 </div>
                 <!-- Team Member 9 -->
@@ -1533,6 +1540,7 @@
                     <h4 class="font-bold text-lg">Mohamed Abo Sen</h4>
                     <p class="text-primary mb-2">Graphics Design Head</p>
                     <p class="text-gray-600 text-sm">Third year computer and control engineering</p>
+                </div>
                 <!-- Team Member 13 -->
                 <!-- Team Member 13 -->
                 
@@ -2114,11 +2122,11 @@
                                 <span class="ml-2">Data Engineering</span>
                             </label>
                             <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="cyper" class="rounded text-primary focus:ring-primary">
-                                <span class="ml-2">Cyper security</span>
+                                <input type="checkbox" name="committees" value="cyber" class="rounded text-primary focus:ring-primary">
+                                <span class="ml-2">Cyber Security</span>
                             </label>
                             <label class="flex items-center text-sm">
-                                <input type="checkbox" name="committees" value="mopile" class="rounded text-primary focus:ring-primary">
+                                <input type="checkbox" name="committees" value="mobile" class="rounded text-primary focus:ring-primary">
                                 <span class="ml-2">Mobile Application</span>
                             </label>
                             <label class="flex items-center text-sm">
@@ -2369,11 +2377,11 @@
                 },
                 events: [
                     {
-                        title: 'wolcome party for new students',
+                        title: 'welcome party for new students',
                         start: '2025-10-07',
                         end: '2025-10-07',
                         className: 'social',
-                        description: 'wolcome party for new students'
+                        description: 'welcome party for new students'
                     },
                     {
                         title: 'Scientific exhibition',
@@ -2392,7 +2400,7 @@
                 ],
                 eventClick: function(info) {
                     // Create a custom modal for event details on mobile
-                    if (window.innerWidth < 768) {
+                    if (true) {
                         const event = info.event;
                         const modal = document.createElement('div');
                         modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4';
@@ -2737,7 +2745,364 @@
             initMeetMemoButton();
         });
     </script>
+<style id="momenta-ui-v2">
+/* Hero */
+.hero-bg{background:linear-gradient(105deg,rgba(15,23,42,.95) 0%,rgba(30,27,75,.84) 55%,rgba(30,27,75,.5) 100%),url(./images/group.jpg);background-size:cover;background-position:center;text-align:left}
+.hero-inner{min-height:min(88vh,760px);display:flex;flex-direction:column;justify-content:center;gap:3rem;padding-block:5rem 2.5rem}
+.hero-copy{max-width:44rem}
+.hero-copy h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:800;line-height:1.03;letter-spacing:-.035em;margin:0 0 1.25rem}
+.hero-copy p{font-size:clamp(1.05rem,2vw,1.3rem);color:rgba(255,255,255,.86);max-width:38rem;margin:0 0 2rem}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.hero-actions a{padding:.85rem 1.5rem;border-radius:10px;font-weight:600;min-height:48px;display:inline-flex;align-items:center;transition:background .2s,color .2s}
+.btn-primary{background:#f59e0b;color:#111827}.btn-primary:hover{background:#fbbf24}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.55);color:#fff}.btn-ghost:hover{background:#fff;color:#1e1b4b}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.18);border-radius:16px;overflow:hidden;max-width:46rem}
+@media(min-width:768px){.hero-stats{grid-template-columns:repeat(4,1fr)}}
+.hero-stats>div{background:rgba(15,23,42,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:1.1rem 1.25rem;display:flex;flex-direction:column;gap:.15rem}
+.hero-stats strong{font-size:1.9rem;font-weight:800;line-height:1}
+.hero-stats span{font-size:.85rem;color:rgba(255,255,255,.7)}
+/* Nav CTA */
+nav a.nav-link[href="#join"]{background:#4f46e5;color:#fff;border-radius:9px;padding:.55rem 1rem}
+nav a.nav-link[href="#join"]:hover{background:#3730a3;color:#fff}
+nav a.nav-link[href="#join"]::after{display:none}
+/* Section headings */
+section h2[data-aos]{font-size:clamp(1.9rem,4vw,2.75rem);font-weight:800;margin-bottom:3rem}
+/* Team by committee */
+.team-group{margin-top:2.75rem}
+.team-group:first-child{margin-top:0}
+.team-group>h4{font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:.6rem;padding-bottom:.75rem;margin-bottom:1.5rem;border-bottom:1px solid var(--line)}
+.team-group>h4 i{color:#4f46e5}
+.team-count{margin-left:auto;font-size:.8rem;font-weight:600;color:var(--muted);background:#eef2ff;border-radius:999px;padding:.1rem .65rem}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:1.25rem}
+.team-grid.lead{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.team-grid>.card-hover{background:#fff;margin:0}
+</style>
+<style id="momenta-ui-v3">
+/* ===== Team cards ===== */
+.team-grid>.card-hover{background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:1.6rem 1.25rem 1.25rem;box-shadow:none;position:relative;transition:border-color .2s,box-shadow .2s,transform .2s}
+.team-grid>.card-hover:hover{border-color:#c7d2fe;box-shadow:0 14px 30px -14px rgba(79,70,229,.3);transform:translateY(-3px)}
+.team-grid>.card-hover img.rounded-full{width:92px;height:92px;border:0;box-shadow:0 0 0 3px #fff,0 0 0 5px #e0e7ff;margin-bottom:1rem}
+.team-grid>.card-hover .absolute{width:28px;height:28px;right:0;bottom:14px;background:#4f46e5;border:2px solid #fff;font-size:.7rem}
+.team-grid>.head-member .absolute{background:#f59e0b}
+.team-grid>.card-hover h4{font-size:1.05rem;font-weight:700;color:#111827;margin:0}
+.team-grid>.card-hover p.text-primary{display:inline-block;margin:.55rem 0 .4rem;padding:.2rem .75rem;border-radius:999px;background:#eef2ff;color:#4338ca;font-size:.78rem;font-weight:600}
+.team-grid>.card-hover p.text-gray-600{margin:0 auto;font-size:.78rem;color:#6b7280;line-height:1.4}
+.team-grid>.head-member{border:1px solid #fcd34d;background:linear-gradient(180deg,#fffbeb,#fff 60%)}
+.team-grid>.vice-head-member{border:1px solid #c7d2fe;background:linear-gradient(180deg,#eef2ff,#fff 60%)}
+.head-member::before,.vice-head-member::before{top:-11px;font-size:.68rem;padding:3px 11px}
+.head-member::before{background:#f59e0b;color:#111827}
+
+/* ===== Event + news cards ===== */
+#activities .card-hover,#news .card-hover{border-radius:18px;overflow:hidden;background:#fff;box-shadow:none}
+#activities .card-hover:hover,#news .card-hover:hover{box-shadow:0 18px 36px -18px rgba(15,23,42,.35);border-color:#c7d2fe}
+#activities .card-hover>.relative,#news .card-hover>.relative{overflow:hidden}
+#activities .card-hover img,#news .card-hover img{height:200px;transition:transform .5s ease}
+#activities .card-hover:hover img,#news .card-hover:hover img{transform:scale(1.04)}
+#activities .card-hover>.relative .absolute{top:14px;left:14px;padding:.3rem .8rem;border-radius:10px;background:rgba(255,255,255,.93);color:#111827;font-weight:700;font-size:.8rem;box-shadow:0 2px 8px rgba(0,0,0,.14);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#news .card-hover>.relative .absolute{top:14px;left:14px;padding:.25rem .8rem;border-radius:999px;background:rgba(79,70,229,.95);font-size:.75rem}
+#activities .card-hover h4,#news .card-hover h4{font-weight:700;line-height:1.35}
+#activities .card-hover .fa-calendar-alt,#activities .card-hover .fa-map-marker-alt{color:#4f46e5;width:1rem}
+#activities .card-hover .p-4,#news .card-hover .p-4{padding:1.25rem 1.4rem 1.5rem}
+#news .card-hover a{margin-top:.25rem}
+
+/* ===== Past leaders ===== */
+#past-leaders .bg-white.rounded-2xl{border-radius:20px;box-shadow:none;border:1px solid #e5e7eb}
+#past-leaders .bg-white.rounded-2xl:hover{border-color:#c7d2fe;box-shadow:0 18px 36px -18px rgba(15,23,42,.3)}
+#past-leaders .bg-gradient-to-r.rounded-xl{background:#f8fafc;border-left:3px solid #4f46e5;border-radius:10px}
+
+/* ===== Founders ===== */
+.founder-card{border-radius:20px;border:1px solid #e5e7eb;box-shadow:none;overflow:hidden}
+.founder-card:hover{transform:translateY(-3px);box-shadow:0 18px 36px -18px rgba(15,23,42,.3)}
+.founder-image{height:280px}
+.founder-badge{top:14px;right:14px;background:rgba(255,255,255,.93);color:#4338ca;border-radius:999px;padding:.3rem .8rem;font-size:.75rem;box-shadow:0 2px 8px rgba(0,0,0,.14)}
+.founder-name{font-size:1.3rem}
+.founder-role{font-size:.9rem}
+
+/* ===== Videos ===== */
+.video-playlist-item{border-radius:16px;overflow:hidden;box-shadow:none}
+.video-playlist-item.active{border:2px solid #4f46e5;transform:none;box-shadow:0 14px 30px -16px rgba(79,70,229,.45)}
+</style>
+<style id="momenta-ui-v4">
+/* ===== Team: portrait cards ===== */
+.team-grid{grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
+.team-grid>.card-hover{padding:0;overflow:hidden;text-align:left;display:flex;flex-direction:column}
+.team-grid>.card-hover>.relative{display:block;width:100%;aspect-ratio:4/5;overflow:hidden;position:relative;background:linear-gradient(135deg,#e0e7ff,#fce7f3)}
+.team-grid>.card-hover img.rounded-full{width:100%;height:100%;border-radius:0;margin:0;box-shadow:none;object-fit:cover;object-position:center 20%;font-size:0;transition:transform .5s ease}
+.team-grid>.card-hover:hover img.rounded-full{transform:scale(1.05)}
+.team-grid>.card-hover .absolute{top:12px;right:12px;bottom:auto;left:auto;width:32px;height:32px;background:rgba(255,255,255,.93);color:#4f46e5;border:0;box-shadow:0 2px 8px rgba(0,0,0,.15);font-size:.8rem;z-index:2}
+.team-grid>.head-member .absolute{background:rgba(255,255,255,.93);color:#b45309}
+.team-grid>.card-hover h4{padding:1rem 1.1rem 0}
+.team-grid>.card-hover p.text-primary{display:block;background:none;padding:.15rem 1.1rem 0;margin:0;border-radius:0;color:#4f46e5;font-size:.85rem;font-weight:600}
+.team-grid>.card-hover p.text-gray-600{padding:.25rem 1.1rem 1.1rem;margin:0;font-size:.78rem}
+.head-member::before,.vice-head-member::before{top:12px;left:12px;transform:none;z-index:3;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+.team-grid.lead{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+
+/* ===== Join form ===== */
+#join [data-aos].rounded-lg{background:#fff;background-image:none;border:1px solid #e5e7eb;border-radius:20px;box-shadow:0 24px 48px -28px rgba(15,23,42,.3);padding:2rem}
+@media(min-width:768px){#join [data-aos].rounded-lg{padding:2.75rem}}
+#join-form label.block{font-weight:600;color:#111827}
+#join-form input[type=text],#join-form input[type=email],#join-form input[type=tel],#join-form select,#join-form textarea{border:1px solid #d1d5db;background:#fff}
+#join-form input:focus,#join-form select:focus,#join-form textarea:focus{border-color:#4f46e5;box-shadow:0 0 0 4px rgba(79,70,229,.15)}
+#join-form label.flex.items-center.text-sm{border:1px solid #e5e7eb;border-radius:10px;padding:.6rem .8rem;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
+#join-form label.flex.items-center.text-sm:hover{border-color:#a5b4fc}
+#join-form label.flex.items-center.text-sm:has(input:checked){border-color:#4f46e5;background:#eef2ff;font-weight:600}
+
+/* ===== Contact ===== */
+#contact .bg-primary\/10{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;padding:0}
+#contact .shadow-md{border:1px solid #e5e7eb;border-radius:18px;box-shadow:none}
+.map-container{border-radius:12px;box-shadow:none}
+
+/* ===== Event cards: even heights ===== */
+#activities .grid>.card-hover,#news .grid>.card-hover{display:flex;flex-direction:column}
+#activities .grid>.card-hover>div:last-child,#news .grid>.card-hover>div:last-child{flex:1}
+#activities .card-hover .event-category{margin-bottom:.6rem}
+</style>
+<script id="momenta-team">
+document.addEventListener('DOMContentLoaded',function(){
+  var grid=document.querySelector('#about .grid.sm\\:grid-cols-2');
+  if(!grid)return;
+  var cards=[].slice.call(grid.querySelectorAll(':scope > .card-hover'));
+  var role=function(c){var p=c.querySelector('p.text-primary');return p?p.textContent.trim():''};
+  var groups=[['Leadership','fa-crown',/^(head of momenta|vice head)$/i],['Web','fa-laptop-code',/web/i],['Mobile','fa-mobile-alt',/mobile/i],['Data','fa-chart-line',/data/i],['Cyber security','fa-shield-alt',/cyber/i],['Robotics','fa-robot',/robotics/i],['Media, PR & design','fa-bullhorn',/^pr |media|graphics/i]];
+  var wrap=document.createElement('div'),used=[];
+  var add=function(title,icon,items,lead){
+    var s=document.createElement('div');s.className='team-group';
+    s.innerHTML='<h4><i class="fas '+icon+'"></i>'+title+'<span class="team-count">'+items.length+'</span></h4>';
+    var g=document.createElement('div');g.className='team-grid'+(lead?' lead':'');
+    items.forEach(function(c){g.appendChild(c);used.push(c)});s.appendChild(g);wrap.appendChild(s);
+  };
+  groups.forEach(function(g,i){
+    var items=cards.filter(function(c){return used.indexOf(c)<0&&g[2].test(role(c))});
+    if(items.length)add(g[0],g[1],items,i===0);
+  });
+  var rest=cards.filter(function(c){return used.indexOf(c)<0});
+  if(rest.length)add('Team','fa-users',rest,false);
+  grid.className='';grid.innerHTML='';grid.appendChild(wrap);
+  var names={};cards.forEach(function(c){var n=c.querySelector('h4');if(n)names[n.textContent.trim().toLowerCase()]=1});
+  var el=document.querySelector('[data-stat="members"]');if(el)el.textContent=Object.keys(names).length;
+});
+</script>
+<script>
+/* momenta-polish.js — ملف واحد (CSS + JS). ضيفه قبل </body> بعد السكريبت الأساسي:
+   <script src="momenta-polish.js"><\/script> */
+(function(){
+  // الخطوط
+  var f=document.createElement('link');
+  f.rel='stylesheet';
+  f.href='https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Cairo:wght@400;600;700&display=swap';
+  document.head.appendChild(f);
+  // الستايل
+  var s=document.createElement('style');
+  s.id='momenta-polish-css';
+  s.textContent=`
+/* momenta-polish.css — حمّله بعد وسم <style> الداخلي */
+:root{
+  --ink:#111827; --muted:#4b5563; --line:#e5e7eb; --bg:#f8fafc;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(16,24,40,.06),0 6px 16px rgba(16,24,40,.06);
+}
+
+/* ---------- Base & typography ---------- */
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+section[id]{scroll-margin-top:90px}
+body{
+  font-family:'Inter','Cairo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  color:var(--ink);background:var(--bg);line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+[style*="direction: rtl"]{font-family:'Cairo','Inter',sans-serif!important;line-height:1.8}
+h1,h2,h3{letter-spacing:-.02em;text-wrap:balance}
+p{max-width:68ch}
+.text-center p,.grid p{max-width:none}
+.section-padding{padding:4rem 1rem}
+@media(min-width:768px){.section-padding{padding:6rem 0}}
+
+/* ---------- Navbar ---------- */
+nav.sticky{
+  background:rgba(255,255,255,.88);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:none;border-bottom:1px solid var(--line);
+  transition:box-shadow .25s;
+}
+nav.is-scrolled{box-shadow:var(--shadow)}
+nav .rounded-full img{width:100%;height:100%;border-radius:9999px;object-fit:cover}
+.nav-link.is-active{color:var(--primary-color)}
+.nav-link.is-active::after{width:100%}
+#mobile-menu{box-shadow:var(--shadow)}
+#mobile-menu a{min-height:44px;display:flex;align-items:center}
+
+/* ---------- Hero ---------- */
+.hero-bg{
+  background:linear-gradient(rgba(30,27,75,.72),rgba(30,27,75,.86)),url(./images/group.jpg);
+  background-size:cover;background-position:center;
+}
+.hero-bg h1{font-size:clamp(2.25rem,6vw,4.25rem);line-height:1.08}
+.hero-bg p{margin-inline:auto;color:rgba(255,255,255,.9)}
+.hero-bg a{border-radius:10px;min-height:48px;display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------- Unified cards ---------- */
+.card-hover,.founder-card,.timeline-content,.video-playlist-item,
+#past-leaders .bg-white.rounded-2xl,.bg-white.rounded-lg.shadow-md,
+.calendar-container{
+  border-radius:var(--radius);border:1px solid var(--line);box-shadow:var(--shadow);
+}
+.card-hover:hover,.founder-card:hover,.video-playlist-item:hover,
+#past-leaders .bg-white.rounded-2xl:hover{
+  transform:translateY(-3px);box-shadow:0 2px 4px rgba(16,24,40,.06),0 14px 28px rgba(16,24,40,.10);
+}
+.committee-card:hover{transform:none}
+.gallery-item{border-radius:var(--radius)}
+
+/* Team */
+.card-hover img.rounded-full{border:3px solid #fff;box-shadow:0 0 0 1px var(--line)}
+.head-member,.vice-head-member{margin-top:.75rem}
+.head-member h4,.vice-head-member h4{margin-top:.25rem}
+
+/* ---------- Timeline (dots centered on the line) ---------- */
+.timeline .timeline-item .timeline-content::after{
+  width:16px;height:16px;top:24px;background:var(--primary-color);
+  border:3px solid #fff;box-shadow:0 0 0 2px var(--primary-color);
+}
+.timeline .timeline-item:nth-child(odd) .timeline-content::after{right:-48px;left:auto}
+.timeline .timeline-item:nth-child(even) .timeline-content::after{left:-48px;right:auto}
+@media(max-width:768px){
+  .timeline .timeline-item:nth-child(n) .timeline-content::after{left:-47px;right:auto}
+}
+
+/* ---------- Calendar events by category ---------- */
+.fc .fc-event{border-radius:6px;cursor:pointer}
+.fc .fc-event.social{background:#7c3aed;border-color:#7c3aed}
+.fc .fc-event.Exhibition,.fc .fc-event.Exhibitions{background:#d97706;border-color:#d97706}
+.fc .fc-event.workshop,.fc .fc-event.workshops{background:#be185d;border-color:#be185d}
+.fc .fc-button-primary{background:var(--primary-color);border-color:var(--primary-color)}
+.fc .fc-button-primary:hover{background:var(--secondary-color)}
+
+/* ---------- Forms ---------- */
+input[type=text],input[type=email],input[type=tel],select,textarea{
+  min-height:44px;border-radius:10px!important;background:#fff;
+  transition:border-color .15s,box-shadow .15s;
+}
+input[type=checkbox]{width:1.15rem;height:1.15rem}
+#join-form label.flex{min-height:40px}
+#join-form button[type=submit]{min-height:48px;border-radius:10px;transform:none!important}
+#join-form button[disabled]{opacity:.65;cursor:wait}
+#form-success{border:1px solid #86efac}
+
+/* ---------- Focus & accessibility ---------- */
+:focus-visible{outline:3px solid var(--accent-color);outline-offset:2px;border-radius:6px}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none}
+.video-playlist-item:focus-visible{outline-offset:3px}
+
+/* ---------- Floating widgets ---------- */
+.meet-memo-container{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+.meet-memo-indicator{transition:opacity .4s}
+.meet-memo-indicator.is-hidden{opacity:0;pointer-events:none}
+@media(max-width:480px){.meet-memo-indicator{display:none}}
+#to-top{
+  position:fixed;left:20px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:900;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;
+  color:var(--primary-color);box-shadow:var(--shadow);cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;transform:translateY(8px);
+}
+#to-top.is-visible{opacity:1;pointer-events:auto;transform:none}
+
+/* ---------- Footer ---------- */
+footer input{border-radius:8px 0 0 8px!important}
+
+/* ---------- Reduced motion ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .hero-bg{background-attachment:scroll}
+}
+`;
+  document.head.appendChild(s);
+})();
+
+/* momenta-polish.js — حمّله في آخر الـ body بعد السكريبت الأساسي */
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('nav.sticky');
+  const menuBtn = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+
+  // Accessibility for the mobile menu button
+  if (menuBtn && menu) {
+    menuBtn.setAttribute('aria-label', 'Toggle menu');
+    menuBtn.setAttribute('aria-controls', 'mobile-menu');
+    menuBtn.setAttribute('aria-expanded', 'false');
+    menuBtn.addEventListener('click', () =>
+      menuBtn.setAttribute('aria-expanded', String(!menu.classList.contains('hidden'))));
+  }
+
+  // Lazy-load below-the-fold images
+  document.querySelectorAll('img').forEach((img, i) => {
+    if (i > 2 && !img.closest('nav') && !img.hasAttribute('loading')) img.loading = 'lazy';
+    img.decoding = 'async';
+    if (!img.hasAttribute('alt')) img.alt = '';
+  });
+
+  // Back-to-top button
+  const toTop = document.createElement('button');
+  toTop.id = 'to-top';
+  toTop.setAttribute('aria-label', 'Back to top');
+  toTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
+  toTop.onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.body.appendChild(toTop);
+
+  // Navbar shadow + back-to-top visibility
+  const onScroll = () => {
+    nav && nav.classList.toggle('is-scrolled', window.scrollY > 8);
+    toTop.classList.toggle('is-visible', window.scrollY > 600);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Scroll-spy: highlight the current section in the nav
+  const links = [...document.querySelectorAll('.nav-link')];
+  const byId = id => links.find(a => a.getAttribute('href') === '#' + id);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      links.forEach(a => a.classList.remove('is-active'));
+      const a = byId(e.target.id);
+      if (a) a.classList.add('is-active');
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  document.querySelectorAll('section[id]').forEach(s => io.observe(s));
+
+  // Join form: prevent double submit and give feedback
+  const form = document.getElementById('join-form');
+  if (form) {
+    form.addEventListener('submit', () => {
+      const btn = form.querySelector('button[type=submit]');
+      if (!btn) return;
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.textContent = label;
+        const ok = document.getElementById('form-success');
+        if (ok && !ok.classList.contains('hidden')) ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 1500);
+    });
+  }
+
+  // Meet Memo: hide the hint after a few seconds
+  const hint = document.getElementById('meet-memo-indicator');
+  if (hint) setTimeout(() => hint.classList.add('is-hidden'), 8000);
+
+  // Video popup: Escape closes it and stops playback
+  const popup = document.getElementById('video-popup');
+  const vid = document.getElementById('myVideo');
+  const stop = () => { if (vid) { vid.pause(); } };
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && popup && popup.style.display !== 'none') {
+      popup.style.display = 'none'; stop();
+    }
+  });
+  if (popup) popup.addEventListener('click', e => { if (e.target === popup) stop(); });
+});
+
+</script>
 </body>
 </html>
-
-
