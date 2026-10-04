@@ -2857,6 +2857,30 @@ section h2[data-aos]{font-size:clamp(1.9rem,4vw,2.75rem);font-weight:800;margin-
 #activities .grid>.card-hover>div:last-child,#news .grid>.card-hover>div:last-child{flex:1}
 #activities .card-hover .event-category{margin-bottom:.6rem}
 </style>
+<style id="momenta-ui-v5">
+/* ===== Past leaders: portrait cards ===== */
+#past-leaders .group>.bg-white.rounded-2xl{padding:0;overflow:hidden;border-radius:20px}
+#past-leaders .group .mb-6.text-center{margin:0}
+#past-leaders .group .relative.inline-block{display:block;width:100%;position:relative}
+#past-leaders .group .w-48.h-48{width:100%;height:auto;aspect-ratio:4/5;border:0;border-radius:0;box-shadow:none;margin:0;background:linear-gradient(135deg,#e0e7ff,#fce7f3)}
+#past-leaders .group .w-48.h-48 img{width:100%;height:100%;object-fit:cover!important;object-position:center 15%;font-size:0;transition:transform .5s ease}
+#past-leaders .group:hover .w-48.h-48 img{transform:scale(1.05)}
+#past-leaders .group .absolute.-bottom-3{top:12px;left:12px;bottom:auto;transform:none;background:rgba(255,255,255,.93);color:#4338ca;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:.25rem .8rem;font-size:.75rem}
+#past-leaders .group .bg-white>.text-center.mb-4{text-align:left;padding:1.1rem 1.25rem 0;margin:0}
+#past-leaders .group .bg-white h4{font-size:1.1rem}
+#past-leaders .group .bg-white h4+p{font-size:.9rem}
+#past-leaders .group .bg-gradient-to-r.rounded-xl{margin:.9rem 1.25rem 1rem}
+#past-leaders .group .italic{text-align:left}
+#past-leaders .group .border-t{margin-top:auto;padding:.8rem 1.25rem;justify-content:flex-start}
+#past-leaders .group .border-t:not(:has(a)){display:none}
+
+/* ===== Founders & supervisor ===== */
+.founder-image{height:auto;aspect-ratio:1/1;background:linear-gradient(135deg,#e0e7ff,#fce7f3)}
+.founder-image img{object-position:center 20%;font-size:0}
+.founder-content{padding:1.25rem 1.4rem 1.5rem}
+.founder-role{color:#4f46e5;font-size:.9rem;margin-bottom:.6rem}
+.founder-description{font-size:.92rem;margin:0}
+</style>
 <script id="momenta-team">
 document.addEventListener('DOMContentLoaded',function(){
   var grid=document.querySelector('#about .grid.sm\\:grid-cols-2');
