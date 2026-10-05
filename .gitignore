@@ -1,0 +1,10 @@
+# build-only files: regenerate with
+#   npx tailwindcss@3.4.17 -c tailwind.config.js -i ./src-tailwind.css -o ./tailwind.css --minify
+tailwind.config.js
+src-tailwind.css
+
+# not used by the site
+new post.pptx
+*.pdf
+*.pdf.docx
+images/main.py

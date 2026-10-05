@@ -7,25 +7,43 @@
     <meta name="theme-color" content="#0b0b0f">
 
     <!-- Performance: establish connections early -->
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preload" as="image" href="./images/group.jpg" fetchpriority="high">
     <title>Momenta - Student Club</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS: precompiled locally (see tailwind.config.js).
+         Was https://cdn.tailwindcss.com - the Play CDN ships ~400KB of blocking JS
+         that JIT-compiles every class in the browser, which made the page render blank. -->
+    <link rel="stylesheet" href="./tailwind.css">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Font Awesome: media=print + onload keeps it off the critical path -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all';this.onload=null">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </noscript>
 
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- AOS (Animate On Scroll). Loaded non-blocking; aos.css sets [data-aos]{opacity:0},
+         so the fail-safe below guarantees the content is revealed if the CDN is slow or blocked. -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css" media="print"
+        onload="this.media='all';this.onload=null">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.css">
+    </noscript>
+    <script>
+        window.__aosFailSafe = setTimeout(function () {
+            if (!window.AOS) document.documentElement.classList.add('aos-off');
+        }, 4000);
+    </script>
 
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-    <!-- FullCalendar -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    <!-- FullCalendar: non-blocking, it lives far below the fold -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" media="print"
+        onload="this.media='all';this.onload=null">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+    </noscript>
 
     <link rel="icon" type="image/png" href="./images/485392458_1151889296947287_7131704205936737111_n.ico">
 
@@ -1295,35 +1313,40 @@
         }
     </style>
 
-    <!-- Tailwind Config -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#4f46e5',
-                        secondary: '#3730a3',
-                        accent: '#f59e0b'
-                    },
-                    animation: {
-                        'pulse-slow': 'pulse 3s infinite',
-                    }
-                }
-            }
-        }
-    </script>
-
+    <!-- Tailwind theme now lives in tailwind.config.js (compiled into ./tailwind.css) -->
     <style>
-        /* Performance helpers: reserve image space and avoid rendering off-screen media early. */
+        /* Performance helpers: reserve image space without collapsing replaced elements. */
         img {
             max-width: 100%;
+            height: auto;
         }
 
-        .gallery img,
-        [class*="gallery"] img {
-            content-visibility: auto;
+        /* AOS fail-safe: aos.css sets [data-aos]{opacity:0}. If its JS never loads, or JS is
+           disabled, this keeps every animated section visible instead of a blank page. */
+        html.aos-off [data-aos],
+        html.aos-off [data-aos].aos-animate {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            [data-aos],
+            [data-aos].aos-animate {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
         }
     </style>
+    <noscript>
+        <style>
+            [data-aos] {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        </style>
+    </noscript>
 </head>
 
 <body class="bg-gray-50">
@@ -2188,7 +2211,7 @@
             <div class="video-main-container" data-aos="fade-up">
                 <div class="video-container">
                     <iframe id="main-video" src="https://www.youtube.com/embed/5lCSf_vEH6c?si=02Hu1dOzaq-r-41-"
-                        title="YouTube video player" frameborder="0"
+                        title="YouTube video player" frameborder="0" loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
@@ -2682,7 +2705,7 @@
             </div>
             <div class="video-popup-body">
                 <div class="video-container">
-                    <video id="myVideo" controls>
+                    <video id="myVideo" controls preload="none">
                         <source src="./images/result two.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -2693,17 +2716,29 @@
 
 
     <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.1/dist/aos.js" defer></script>
 
     <!-- Custom JavaScript -->
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        // Initialize AOS - guarded, so a blocked/slow CDN can never leave the page invisible.
+        // Runs on DOMContentLoaded because the AOS script above is deferred.
+        document.addEventListener('DOMContentLoaded', function () {
+            function failSafe() { document.documentElement.classList.add('aos-off'); }
 
+            if (!window.AOS) { failSafe(); return; }
+            try {
+                AOS.init({ duration: 1000, once: true });
+                clearTimeout(window.__aosFailSafe);
+                document.documentElement.classList.remove('aos-off');
+                window.addEventListener('load', function () { AOS.refresh(); });
+            } catch (err) {
+                failSafe();
+            }
+        });
+    </script>
+
+    <script>
         // Mobile menu toggle
         document.getElementById('mobile-menu-button').addEventListener('click', function () {
             document.getElementById('mobile-menu').classList.toggle('hidden');
