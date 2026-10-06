@@ -2508,10 +2508,15 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary text-sm md:text-base"></textarea>
                     </div>
 
+                    <div class="hidden" aria-hidden="true">
+                        <label for="company">Company</label>
+                        <input type="text" id="company" name="company" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <div>
-                        <button type="submit"
-                            class="w-full bg-primary text-white py-3 px-4 rounded-md font-semibold hover:bg-secondary transition transform hover:scale-105 text-sm md:text-base">
-                            Submit Application
+                        <button type="submit" id="join-submit"
+                            class="w-full bg-primary text-white py-3 px-4 rounded-md font-semibold hover:bg-secondary transition transform hover:scale-105 text-sm md:text-base disabled:opacity-60 disabled:cursor-wait disabled:transform-none">
+                            <span id="join-submit-label">Submit Application</span>
                         </button>
                     </div>
                 </form>
@@ -2520,6 +2525,14 @@
                     <i class="fas fa-check-circle text-2xl mb-2"></i>
                     <p class="font-semibold">Thank you for your application to Momenta!</p>
                     <p>We'll be in touch soon to welcome you to our community.</p>
+                </div>
+
+                <div id="form-error" class="hidden mt-4 p-4 bg-red-100 text-red-700 rounded-md text-center">
+                    <i class="fas fa-exclamation-circle text-2xl mb-2"></i>
+                    <p class="font-semibold">We couldn't send your application.</p>
+                    <p id="form-error-detail" class="text-sm mt-1"></p>
+                    <button type="button" id="form-retry"
+                        class="mt-3 underline font-semibold hover:no-underline">Try again</button>
                 </div>
             </div>
         </div>
@@ -2853,35 +2866,117 @@
             calendar.render();
         });
 
-        // Form submission with Formspree integration
-        document.getElementById("join-form").addEventListener("submit", async function (e) {
-            e.preventDefault();
+        // Form submission to Google Apps Script
+        (function () {
+            var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbylGd6KjubvRTAbClpsjivjcFL-7YwgU-KvplkIBWXVwOzddG1WB8Fwizv4cszP6BbH7g/exec";
+            var form = document.getElementById("join-form");
+            var btn = document.getElementById("join-submit");
+            var btnLabel = document.getElementById("join-submit-label");
+            var okBox = document.getElementById("form-success");
+            var errBox = document.getElementById("form-error");
+            var errDetail = document.getElementById("form-error-detail");
+            var retryBtn = document.getElementById("form-retry");
 
-            const formData = {
-                name: document.getElementById('name').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                major: document.getElementById('major').value,
-                year: document.getElementById('year').value,
-                committees: Array.from(document.querySelectorAll('input[name="committees"]:checked')).map(el => el.value).join(', '),
-                message: document.getElementById('message').value
-            };
+            function show(el) { el.classList.remove("hidden"); }
+            function hide(el) { el.classList.add("hidden"); }
 
-            try {
-                await fetch("https://script.google.com/macros/s/AKfycbzFNE9J3TukyWCGDlbSEnYhhuqEnEOmN5gF6E9OulgWLZC7fuP-80Auu5yWJ1CzOV82lg/exec", {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(formData)
-                });
-
-                // هنا حط أي أكشن عايزه يحصل بعد الإرسال
-                document.getElementById("join-form").reset();
-                document.getElementById("form-success").classList.remove("hidden");
-            } catch (err) {
-                console.error(err);
+            function setBusy(busy) {
+                btn.disabled = busy;
+                btnLabel.innerHTML = busy
+                    ? '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...'
+                    : 'Submit Application';
             }
-        });
+
+            function fail(message) {
+                hide(okBox);
+                errDetail.textContent = message || "Please check your connection and try again.";
+                show(errBox);
+            }
+
+            if (retryBtn) {
+                retryBtn.addEventListener("click", function () { hide(errBox); });
+            }
+
+            if (!form) return;
+
+            if (FORM_ENDPOINT.indexOf("PASTE_YOUR_DEPLOYED_EXEC_URL_HERE") !== -1) {
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                    fail("The application form is not configured yet. Please contact Momenta directly.");
+                });
+                return;
+            }
+
+            form.addEventListener("submit", async function (e) {
+                e.preventDefault();
+                hide(okBox);
+                hide(errBox);
+
+                var emailInput = document.getElementById('email');
+                var phoneInput = document.getElementById('phone');
+                if (emailInput && emailInput.value && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(emailInput.value.trim())) {
+                    fail("Please enter a valid email address.");
+                    return;
+                }
+                if (phoneInput && phoneInput.value && !/^[0-9+\-\s()]{7,40}$/.test(phoneInput.value.trim())) {
+                    fail("Please enter a valid phone number.");
+                    return;
+                }
+
+                var payload = {
+                    name: (document.getElementById('name') || {}).value || '',
+                    email: (document.getElementById('email') || {}).value || '',
+                    phone: (document.getElementById('phone') || {}).value || '',
+                    major: (document.getElementById('major') || {}).value || '',
+                    year: (document.getElementById('year') || {}).value || '',
+                    committees: Array.prototype.slice
+                        .call(document.querySelectorAll('input[name="committees"]:checked'))
+                        .map(function (el) { return el.value; }).join(', '),
+                    message: (document.getElementById('message') || {}).value || '',
+                    company: (document.getElementById('company') || {}).value || ''
+                };
+
+                setBusy(true);
+
+                var controller = new AbortController();
+                var timer = setTimeout(function () { controller.abort(); }, 20000);
+
+                try {
+                    var res = await fetch(FORM_ENDPOINT, {
+                        method: "POST",
+                        headers: { "Content-Type": "text/plain;charset=utf-8" },
+                        body: JSON.stringify(payload),
+                        signal: controller.signal
+                    });
+
+                    var body = null;
+                    try { body = JSON.parse(await res.text()); } catch (parseErr) { body = null; }
+
+                    clearTimeout(timer);
+
+                    if (!res.ok) {
+                        fail((body && body.error) ? body.error : "Server returned " + res.status + ".");
+                        return;
+                    }
+                    if (!body || body.ok !== true) {
+                        fail((body && body.error) ? body.error : "Unexpected response from the server.");
+                        return;
+                    }
+
+                    form.reset();
+                    show(okBox);
+                } catch (err) {
+                    clearTimeout(timer);
+                    if (err && err.name === "AbortError") {
+                        fail("The request timed out. Please try again.");
+                    } else {
+                        fail("Network error. Please try again.");
+                    }
+                } finally {
+                    setBusy(false);
+                }
+            });
+        })();
 
 
         // Gallery modal functionality
